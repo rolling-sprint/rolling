@@ -81,3 +81,28 @@ export async function postMessage(formData, recipientId) {
 export async function postReaction(formData, recipientId) {
   await POST(`${BASE_URL}/recipients/${recipientId}/reactions/`, formData);
 }
+
+// DELETE API Layer
+export async function DELETE(URL) {
+  try {
+    const response = await fetch(URL, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Failed to delete data : ", error);
+    throw error;
+  }
+}
+
+// DELETE : 롤링페이퍼 삭제
+export async function deletePaper(recipientId) {
+  await DELETE(`${BASE_URL}/recipients/${recipientId}/`);
+}
+
+// DELETE : 메시지카드 삭제
+export async function deleteMessage(senderId) {
+  await DELETE(`${BASE_URL}/messages/${senderId}/`);
+}
