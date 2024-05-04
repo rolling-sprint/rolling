@@ -23,8 +23,8 @@ export async function getRecipientsList() {
 }
 
 // GET : 생성된 롤링페이퍼 정보
-export async function getRecipientDetail(postId) {
-  return await GET(`${BASE_URL}/recipients/${postId}/`);
+export async function getRecipientDetail(recipientId) {
+  return await GET(`${BASE_URL}/recipients/${recipientId}/`);
 }
 
 // GET : 생성된 롤링페이퍼 - 메시지 리스트
