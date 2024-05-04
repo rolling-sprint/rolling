@@ -1,4 +1,5 @@
-// API 정리 --> https://www.notion.so/sprint-part2-10/API-385ccff1c1c3489b8851e86cbde0b38f?pvs=4
+// 함수 정리 --> https://www.notion.so/sprint-part2-10/API-385ccff1c1c3489b8851e86cbde0b38f?pvs=4
+// API 명세서 --> https://codeit.notion.site/API-d9eecacf2dbd4f268baf33cd11190a78
 const BASE_URL = "https://rolling-api.vercel.app/6-10";
 const IMG_URL = "https://rolling-api.vercel.app";
 
@@ -48,4 +49,35 @@ export async function getImages(imgType) {
 
 export async function getCustomRecipient(url) {
   return await GET(url);
+}
+
+// POST API Layer
+export async function POST(URL, formData) {
+  try {
+    const response = await fetch(URL, {
+      method: "POST",
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Failed to post data : ", error);
+    throw error;
+  }
+}
+
+// POST : 롤링페이퍼 생성 폼
+export async function postPaper(formData) {
+  await POST(`${BASE_URL}/recipients/`, formData);
+}
+
+// POST : 메시지카드 생성 폼
+export async function postMessage(formData, recipientId) {
+  await POST(`${BASE_URL}/recipients/${recipientId}/messages/`, formData);
+}
+
+// POST : 이모지 추가
+export async function postReaction(formData, recipientId) {
+  await POST(`${BASE_URL}/recipients/${recipientId}/reactions/`, formData);
 }
