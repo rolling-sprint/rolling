@@ -1,4 +1,4 @@
-import styles from "../PaperPostForm.module.scss";
+import styles from "../SeletBox/SelectBox.module.scss";
 import checkImage from "../../../../assets/images/Enabled.svg";
 
 const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {
