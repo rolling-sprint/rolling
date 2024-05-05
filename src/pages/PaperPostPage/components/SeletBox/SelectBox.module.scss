@@ -6,3 +6,57 @@
     margin: 0;
   }
 }
+
+selectorBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.6rem;
+
+  .selectLabel {
+    width: 16.8rem;
+    height: 16.8rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.6rem;
+    flex-shrink: 0;
+    border: 1px solid var(--black);
+    cursor: pointer;
+    background-size: cover;
+  }
+
+  // .selectLabel > .check {
+  // }
+
+  .selectLabel > .check > svg {
+    width: 4.4rem;
+    height: 4.4rem;
+    background: var(--gray-500);
+    border-radius: 10rem;
+    padding: 1rem;
+    margin: 6.2rem;
+    z-index: 1;
+  }
+
+  .checked svg {
+    display: block;
+  }
+
+  .checkboxInput {
+    display: none;
+  }
+
+  .beige {
+    background: #ffe2ad;
+  }
+
+  .purple {
+    background: #ecd9ff;
+  }
+
+  .blue {
+    background: #b1e4ff;
+  }
+
+  .green {
+    background: #d0f5c3;
+  }
+}
