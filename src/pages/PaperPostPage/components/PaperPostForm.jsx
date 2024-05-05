@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postPaper } from "../../../services/api";
-//import styles from "@/pages/post/PostPage.module.scss";
+import styles from "./PaperPostForm.module.scss";
 import SelectBox from "./SeletBox/SelectBox";
 import PrimaryButton from "../../../components/UI/PrimaryButton";
 
@@ -44,9 +44,11 @@ function PaperPostForm() {
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label>To.</label>
+      <form onSubmit={handleFormSubmit} className={styles.postForm}>
+        <div className={styles.inputBox}>
+          <label htmlFor="sendingInput" className={styles.sendTo}>
+            To.
+          </label>
           <input
             type="text"
             id="sendingInput"
@@ -54,18 +56,23 @@ function PaperPostForm() {
             value={inputValue}
             onChange={handleInputChange}
             errorMessage={error}
+            className={styles.sendToInput}
           />
         </div>
-        <div>
-          <h2>배경화면을 선택해 주세요.</h2>
-          <p>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</p>
+        <div className={styles.textBox}>
+          <h2 className={styles.title}>배경화면을 선택해 주세요.</h2>
+          <p className={styles.subTitle}>
+            컬러를 선택하거나, 이미지를 선택할 수 있습니다.
+          </p>
         </div>
         <SelectBox
           type={type}
           onSelectionChange={handleSelectionChange}
           onSelectTypeChange={handleSelectTypeChange}
         />
-        <PrimaryButton disable={isDisabled}>생성하기</PrimaryButton>
+        <PrimaryButton WidthMax={true} disable={isDisabled}>
+          생성하기
+        </PrimaryButton>
       </form>
     </div>
   );

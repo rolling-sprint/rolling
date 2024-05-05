@@ -61,10 +61,26 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
   };
 
   useEffect(() => {
-    const fetchImageUrls = getImages("background-images");
-    if (fetchImageUrls && fetchImageUrls.length > 0) {
-      setImageUrls(fetchImageUrls);
-    }
+    // const fetchImageUrls = getImages("background-images");
+    // if (fetchImageUrls && fetchImageUrls.length > 0) {
+    //   setImageUrls(fetchImageUrls);
+    // }
+    const fetchImageUrls = async () => {
+      try {
+        const backgroundImageUrl =
+          "https://rolling-api.vercel.app/background-images/";
+        const response = await fetch(backgroundImageUrl);
+        const data = await response.json();
+
+        if (data && data.imageUrls && data.imageUrls.length > 0) {
+          setImageUrls(data.imageUrls);
+        }
+      } catch (error) {
+        console.error("Error fetching image URLs:", error);
+      }
+    };
+
+    fetchImageUrls();
   }, []);
 
   return (
