@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DropDownBox from "./DropDownBox/DropDownBox";
 import ProfileImage from "./ProfileImage/ProfileImage";
 import ContentEditor from "./ContentEditor/ContentEditor";
@@ -20,7 +20,7 @@ const INITIAL_VALUES = {
 function MessagePostForm() {
   const [values, setValues] = useState(INITIAL_VALUES);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [showError, setShowError] = useState("none");
+  const [showError, setShowError] = useState(false);
 
   const handleInputChange = (name, value) => {
     setValues((prevValues) => ({
@@ -32,16 +32,12 @@ function MessagePostForm() {
     setIsDisabled(
       !(sender && content && sender.trim() !== "" && content.trim() !== "")
     );
-    setShowError(sender ? "none" : "block");
+    setShowError(sender ? false : true);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
   };
-
-  useEffect(() => {
-    setIsDisabled(true);
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -55,12 +51,9 @@ function MessagePostForm() {
             onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             placeholder="이름을 입력해주세요."
           />
-          <div
-            style={{ display: `${showError}` }}
-            className={styles.errorMessage}
-          >
-            값을 입력해주세요.
-          </div>
+          {showError && (
+            <div className={styles.errorMessage}>값을 입력해주세요.</div>
+          )}
         </div>
         <div>
           <h2>프로필 이미지</h2>
