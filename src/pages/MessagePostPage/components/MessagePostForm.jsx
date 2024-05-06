@@ -22,8 +22,7 @@ function MessagePostForm() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [showError, setShowError] = useState("none");
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (name, value) => {
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -33,19 +32,7 @@ function MessagePostForm() {
     setIsDisabled(
       !(sender && content && sender.trim() !== "" && content.trim() !== "")
     );
-
-    if (!sender) {
-      setShowError("block");
-    } else {
-      setShowError("none");
-    }
-  };
-
-  const handleValueChange = (name, value) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    setShowError(sender ? "none" : "block");
   };
 
   const handleFormSubmit = (e) => {
@@ -65,7 +52,7 @@ function MessagePostForm() {
             name="sender"
             type="text"
             value={values.sender}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e.target.name, e.target.value)}
             placeholder="이름을 입력해주세요."
           />
           <div
@@ -77,7 +64,7 @@ function MessagePostForm() {
         </div>
         <div>
           <h2>프로필 이미지</h2>
-          <ProfileImage name="profileImageURL" onChange={handleValueChange} />
+          <ProfileImage name="profileImageURL" onChange={handleInputChange} />
         </div>
         <div>
           <h2>상대와의 관계</h2>
@@ -89,7 +76,7 @@ function MessagePostForm() {
         </div>
         <div>
           <h2>내용을 입력해 주세요</h2>
-          <ContentEditor name="content" onChange={handleValueChange} />
+          <ContentEditor name="content" onChange={handleInputChange} />
         </div>
         <div>
           <h2>폰트 선택</h2>

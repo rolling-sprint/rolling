@@ -14,7 +14,7 @@ function DropDownBox({ name, onChange, options }) {
     const selectedValue = e.target.value;
     setSelected(selectedValue);
     setIsDrop(false);
-    onChange(e);
+    onChange(name, selectedValue);
   };
 
   return (
