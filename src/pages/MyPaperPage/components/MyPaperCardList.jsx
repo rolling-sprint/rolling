@@ -2,6 +2,7 @@ import MyPaperCard from "./MyPaperCard";
 import styles from "./MyPaperCardList.module.scss";
 import { useEffect, useState } from "react";
 import { getMessages } from "../../../services/api";
+import AddPaperCard from "./AddPaperCard";
 
 function MyPaperCardList() {
   const INITIAL_VALUE = {
@@ -26,6 +27,7 @@ function MyPaperCardList() {
   return (
     <div className="page-wrapper">
       <div className={styles.cardList}>
+        <AddPaperCard />
         {userMessage &&
           userMessage.results &&
           userMessage.results.map((result, index) => (
