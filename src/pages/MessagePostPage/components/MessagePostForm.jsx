@@ -111,7 +111,9 @@ function MessagePostForm() {
           />
         </div>
         <div>
-          <PrimaryButton disable={isDisabled}>생성하기</PrimaryButton>
+          <PrimaryButton WidthMax={true} disable={isDisabled}>
+            생성하기
+          </PrimaryButton>
         </div>
       </form>
     </div>
