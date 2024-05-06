@@ -56,11 +56,16 @@ export async function POST(URL, formData) {
   try {
     const response = await fetch(URL, {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json", // JSON 데이터를 보내는 경우
+      },
+      body: JSON.stringify(formData),
     });
     if (!response.ok) {
       throw new Error(`HTTP error: ${response.status}`);
     }
+    const body = await response.json();
+    return body;
   } catch (error) {
     console.error("Failed to post data : ", error);
     throw error;
