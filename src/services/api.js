@@ -74,7 +74,8 @@ export async function POST(URL, formData) {
 
 // POST : 롤링페이퍼 생성 폼
 export async function postPaper(formData) {
-  await POST(`${BASE_URL}/recipients/`, formData);
+  const fetchData = await POST(`${BASE_URL}/recipients/`, formData);
+  return fetchData;
 }
 
 // POST : 메시지카드 생성 폼
