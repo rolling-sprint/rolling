@@ -8,14 +8,21 @@ function formatDate(value) {
 }
 
 function MyPaperCard({ message }) {
-  console.log(message);
+  function relationship(message) {
+    if (message.relationship === "친구") return styles.blue;
+    else if (message.relationship === "지인") return styles.orange;
+    else if (message.relationship === "가족") return styles.green;
+    else if (message.relationship === "동료") return styles.purple;
+  }
   return (
     <div className="page-wrapper">
       <div className={styles.messageCard}>
         <div className={styles.senderHeader}>
           <img src={message.profileImageURL} alt="프로필 이미지" />
           <p className={styles.sender}>From. {message.sender}</p>
-          <p className={styles.relationship}>{message.relationship}</p>
+          <p className={`${styles.relationship} ${relationship(message)}`}>
+            {message.relationship}
+          </p>
         </div>
         <div className={styles.messageBorderLine}></div>
         <p className={styles.content}>{message.content}</p>

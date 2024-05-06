@@ -32,12 +32,27 @@
     top: 58px;
     left: 94px;
     width: 45px;
+    height: 20px;
     font-size: 14px;
     font-weight: 400;
     padding: 0px 8px;
     border-radius: 4px;
-    background-color: #e4fbdc;
-    color: #2ba600;
+    &.blue {
+      background-color: #e2f5ff;
+      color: #00a2fe;
+    }
+    &.orange {
+      background-color: var(--orange-100);
+      color: var(--orange-500);
+    }
+    &.green {
+      background-color: #e4fbdc;
+      color: #2ba600;
+    }
+    &.purple {
+      background-color: #f8f0ff;
+      color: #9935ff;
+    }
   }
 }
 .messageBorderLine {
@@ -52,6 +67,7 @@
   position: absolute;
   top: 116px;
   left: 24px;
+  width: 336px;
   font-size: 18px;
   line-height: 28px;
   color: var(--grey-600);
