@@ -5,27 +5,15 @@ import ContentEditor from "./ContentEditor/ContentEditor";
 import PrimaryButton from "../../../components/UI/PrimaryButton";
 import styles from "./MessagePostForm.module.scss";
 
-const RELATIONSHIP = [
-  { id: 1, value: "친구" },
-  { id: 2, value: "지인" },
-  { id: 3, value: "동료" },
-  { id: 4, value: "가족" },
-];
-
-const FONT = [
-  { id: 1, value: "Noto Sans" },
-  { id: 2, value: "Pretendard" },
-  { id: 3, value: "나눔명조" },
-  { id: 4, value: "나눔손글씨 손편지체" },
-];
-
+const RELATIONSHIP = ["친구", "지인", "동료", "가족"];
+const FONT = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
 const INITIAL_VALUES = {
   recipientId: null,
   sender: "",
   profileImageURL: "",
-  relationship: RELATIONSHIP[0].value,
+  relationship: "친구",
   content: "",
-  font: FONT[0].value,
+  font: "Noto Sans",
 };
 
 function MessagePostForm() {

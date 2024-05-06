@@ -4,7 +4,7 @@ import arrowIconUrl from "../../../../assets/icons/icon-arrow-bottom.svg";
 
 function DropDownBox({ name, onChange, options }) {
   const [isDrop, setIsDrop] = useState(false);
-  const [selected, setSelected] = useState(options[0].value);
+  const [selected, setSelected] = useState(options[0]);
 
   const toggleDropdown = () => {
     setIsDrop(!isDrop);
@@ -27,15 +27,15 @@ function DropDownBox({ name, onChange, options }) {
       {isDrop && (
         <div className={styles.options}>
           {options.map((option) => (
-            <label key={option.id} className={styles.option}>
+            <label className={styles.option}>
               <input
                 name={name}
                 type="radio"
-                value={option.value}
-                checked={selected === option.value}
+                value={option}
+                checked={selected === option}
                 onChange={handleOptionChange}
               />
-              {option.value}
+              {option}
             </label>
           ))}
         </div>
