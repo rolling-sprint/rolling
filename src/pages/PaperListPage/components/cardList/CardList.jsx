@@ -47,7 +47,9 @@ function CardList({ order = "" }) {
     <>
       <div className={styles.list}>
         {!list && <span>로딩 실패</span>}
-        {prevUrl && <button onClick={handlePrevButton}>이전</button>}
+        {prevUrl && (
+          <button className={styles.buttonLeft} onClick={handlePrevButton} />
+        )}
         {list &&
           list.map((el) => (
             <div
@@ -65,7 +67,9 @@ function CardList({ order = "" }) {
               />
             </div>
           ))}
-        {nextUrl && <button onClick={handleNextButton}>다음</button>}
+        {nextUrl && (
+          <button className={styles.buttonRight} onClick={handleNextButton} />
+        )}
       </div>
     </>
   );
