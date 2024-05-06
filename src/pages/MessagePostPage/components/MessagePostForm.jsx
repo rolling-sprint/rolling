@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import DropDownBox from "./DropDownBox/DropDownBox";
 import ProfileImage from "./ProfileImage/ProfileImage";
 import ContentEditor from "./ContentEditor/ContentEditor";
 import PrimaryButton from "../../../components/UI/PrimaryButton";
+import { postMessage } from "../../../services/api";
 import styles from "./MessagePostForm.module.scss";
 
 const RELATIONSHIP = ["친구", "지인", "동료", "가족"];
 const FONT = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편지체"];
 const INITIAL_VALUES = {
-  recipientId: null,
   sender: "",
   profileImageURL:
     "https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png",
@@ -21,6 +22,8 @@ function MessagePostForm() {
   const [values, setValues] = useState(INITIAL_VALUES);
   const [isDisabled, setIsDisabled] = useState(true);
   const [showError, setShowError] = useState(false);
+  const { id } = useParams();
+  const goToMyPaper = useNavigate();
 
   const handleInputChange = (name, value) => {
     setValues((prevValues) => ({
@@ -35,8 +38,12 @@ function MessagePostForm() {
     setShowError(sender ? false : true);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    await postMessage(values, id);
+    setValues(INITIAL_VALUES);
+    goToMyPaper(`/post/${id}`);
   };
 
   return (
