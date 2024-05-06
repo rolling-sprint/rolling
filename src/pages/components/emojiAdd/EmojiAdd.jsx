@@ -1,3 +1,4 @@
+import { TestPostReaction } from "../../../services/api";
 import styles from "./EmojiAdd.module.scss";
 import addImg from "./imgs/add.svg";
 import EmojiPicker from "emoji-picker-react";
@@ -42,12 +43,19 @@ const EmojiAdd = ({ recipientId }) => {
     };
     window.addEventListener("resize", handleWidth);
 
-    console.log(emojiData);
+    const handlePostData = async (formData, recipientId) => {
+      if (emojiData.emoji === "" || emojiData.type === "") {
+        return;
+      }
+      await TestPostReaction(formData, recipientId);
+    };
+
+    handlePostData(emojiData, recipientId);
 
     return () => {
       window.removeEventListener("resize", handleWidth);
     };
-  }, [emojiData]);
+  }, [emojiData, recipientId]);
 
   return (
     <div className={styles.emoji_container}>

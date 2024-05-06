@@ -82,6 +82,21 @@ export async function postReaction(formData, recipientId) {
   await POST(`${BASE_URL}/recipients/${recipientId}/reactions/`, formData);
 }
 
+// POST: 이모지 추가 테스트
+const csrfToken =
+  "scbf8uCmv92dW6Ndf4W011vj2Nt7z9DHpSHDMcCuTAiCplkkWgJKHTF5ihL7bgFd";
+export async function TestPostReaction(formData, recipientId) {
+  fetch(`${BASE_URL}/recipients/${recipientId}/reactions/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrfToken,
+    },
+    body: JSON.stringify(formData),
+  });
+}
+
 // DELETE API Layer
 export async function DELETE(URL) {
   try {
