@@ -17,31 +17,57 @@ const EmojiAdd = ({ recipientId }) => {
     setEmojiShow(!emojiShow);
   };
 
+  const onEmojiAddClick = (e) => {
+    if (emojiData.emoji === e.emoji && emojiData.type === "increase") {
+      setEmojiData({
+        ...emojiData,
+        type: "decrease",
+      });
+    } else if (emojiData.emoji === e.emoji && emojiData.type === "decrease") {
+      setEmojiData({
+        ...emojiData,
+        type: "increase",
+      });
+    } else {
+      setEmojiData({
+        emoji: e.emoji,
+        type: "increase",
+      });
+    }
+  };
+
   useEffect(() => {
     const handleWidth = () => {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleWidth);
 
+    console.log(emojiData);
+
     return () => {
       window.removeEventListener("resize", handleWidth);
     };
-  }, []);
+  }, [emojiData]);
 
   return (
     <div className={styles.emoji_container}>
       <button className={styles.btn_border} onClick={onClickShow}>
-        {/* 크기가 360이하면 이미지만 보이게하는 건데 제대로 작동하는지 확인할려고 768로 지정해놨음, 나중에 수정하면됨 */}
-        {windowWidth <= 768 ? (
+        {windowWidth <= 360 ? (
           <img src={addImg} alt="이모지추가하기" />
         ) : (
           <div className={styles.add_button}>
-            <img src={addImg} alt="이모지추가하기" /> 추가
+            <img src={addImg} alt="이모지추가하기" />
+            추가
           </div>
         )}
       </button>
       <div className={styles.emoji_picker_container}>
-        {emojiShow && <EmojiPicker className={styles.emoji_picker} />}
+        {emojiShow && (
+          <EmojiPicker
+            onEmojiClick={onEmojiAddClick}
+            className={styles.emoji_picker}
+          />
+        )}
       </div>
     </div>
   );
