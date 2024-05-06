@@ -10,13 +10,14 @@ function MyPaperCard({ message }) {
   return (
     <div className="page-wrapper">
       <div className={styles.messageCard}>
-        <img src={message.profileImageURL} />
-        <div>
-          <p>From. {message.sender}</p>
-          <p>{message.relationship}</p>
+        <div className={styles.senderHeader}>
+          <img src={message.profileImageURL} />
+          <p className={styles.sender}>From. {message.sender}</p>
+          <p className={styles.relationship}>{message.relationship}</p>
         </div>
-        <p>{message.content}</p>
-        <p>{message.createdAt}</p>
+        <div className={styles.messageBorderLine}></div>
+        <p className={styles.content}>{message.content}</p>
+        <p className={styles.createDate}>{message.createdAt}</p>
       </div>
     </div>
   );

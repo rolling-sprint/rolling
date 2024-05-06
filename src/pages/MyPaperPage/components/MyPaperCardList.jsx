@@ -25,12 +25,13 @@ function MyPaperCardList() {
 
   return (
     <div className="page-wrapper">
-      페이퍼카드리스트
-      {userMessage &&
-        userMessage.results &&
-        userMessage.results.map((result, index) => (
-          <MyPaperCard key={index} message={result} />
-        ))}
+      <div className={styles.cardList}>
+        {userMessage &&
+          userMessage.results &&
+          userMessage.results.map((result, index) => (
+            <MyPaperCard key={index} message={result} />
+          ))}
+      </div>
     </div>
   );
 }
