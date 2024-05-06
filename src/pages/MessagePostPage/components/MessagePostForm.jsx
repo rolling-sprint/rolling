@@ -10,7 +10,8 @@ const FONT = ["Noto Sans", "Pretendard", "나눔명조", "나눔손글씨 손편
 const INITIAL_VALUES = {
   recipientId: null,
   sender: "",
-  profileImageURL: "",
+  profileImageURL:
+    "https://learn-codeit-kr-static.s3.ap-northeast-2.amazonaws.com/sprint-proj-image/default_avatar.png",
   relationship: "친구",
   content: "",
   font: "Noto Sans",
