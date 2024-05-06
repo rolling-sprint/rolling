@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { postPaper } from "../../../services/api";
 import styles from "./PaperPostForm.module.scss";
 import SelectBox from "./SeletctBox/SelectBox";
@@ -9,6 +11,7 @@ function PaperPostForm() {
   const [error, setError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [backgroundSelection, setBackgroundSelection] = useState({});
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
