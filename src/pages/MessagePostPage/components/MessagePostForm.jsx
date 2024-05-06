@@ -86,7 +86,7 @@ function MessagePostForm() {
             options={FONT}
           />
         </div>
-        <div>
+        <div className={styles.submitButton}>
           <PrimaryButton WidthMax={true} disable={isDisabled}>
             생성하기
           </PrimaryButton>
