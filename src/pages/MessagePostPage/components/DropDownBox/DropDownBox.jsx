@@ -6,15 +6,17 @@ function DropDownBox({ name, onChange, options }) {
   const [isDrop, setIsDrop] = useState(false);
   const [selected, setSelected] = useState(options[0]);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (e) => {
+    e.preventDefault();
     setIsDrop(!isDrop);
   };
 
   const handleOptionChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelected(selectedValue);
+    e.preventDefault();
+    const { value } = e.target;
+    setSelected(value);
     setIsDrop(false);
-    onChange(name, selectedValue);
+    onChange(name, value);
   };
 
   return (
@@ -26,8 +28,8 @@ function DropDownBox({ name, onChange, options }) {
 
       {isDrop && (
         <div className={styles.options}>
-          {options.map((option) => (
-            <label className={styles.option}>
+          {options.map((option, index) => (
+            <label key={index} className={styles.option}>
               <input
                 name={name}
                 type="radio"

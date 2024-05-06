@@ -35,8 +35,9 @@ function ProfileImage({ name, onChange }) {
       <div className={styles.avatarsSection}>
         <p>프로필 이미지를 선택해주세요!</p>
         <div className={styles.avatars}>
-          {urlOptions.slice(1).map((url) => (
+          {urlOptions.slice(1).map((url, index) => (
             <img
+              key={index}
               alt="프로필 목록"
               src={url}
               className={styles.avatar}
