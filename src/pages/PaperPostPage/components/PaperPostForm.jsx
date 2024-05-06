@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { postPaper } from "../../../services/api";
 import styles from "./PaperPostForm.module.scss";
 import SelectBox from "./SeletBox/SelectBox";
@@ -6,14 +8,15 @@ import PrimaryButton from "../../../components/UI/PrimaryButton";
 
 function PaperPostForm() {
   const [inputValue, setInputValue] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState("none");
   const [isDisabled, setIsDisabled] = useState(true);
   const [backgroundSelection, setBackgroundSelection] = useState({});
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    setError("");
+    setError(value.trim() === "" ? "block" : "none");
     setIsDisabled(value.trim() === "");
   };
 
@@ -27,7 +30,8 @@ function PaperPostForm() {
         type === "image" ? backgroundSelection.imageURL : null,
     };
 
-    postPaper(requestBody);
+    const { id } = await postPaper(requestBody);
+    navigate(`/post/${id}`);
   };
 
   const [type, setType] = useState("color");
@@ -53,9 +57,11 @@ function PaperPostForm() {
             placeholder="받는 사람 이름을 입력해주세요"
             value={inputValue}
             onChange={handleInputChange}
-            errorMessage={error}
             className={styles.sendToInput}
           />
+          <div style={{ display: `${error}` }} className={styles.errorMessage}>
+            값을 입력해주세요.
+          </div>
         </div>
         <div className={styles.textBox}>
           <h2 className={styles.title}>배경화면을 선택해 주세요.</h2>
