@@ -9,7 +9,9 @@
 .share_btn {
   border: 1px solid var(--grey-300);
   border-radius: 6px;
-  padding: 6px 16px;
+  width: 56px;
+  height: 36px;
+  padding: 5px;
 
   @media (max-width: 500px) {
     width: 36px;
@@ -33,7 +35,7 @@
   justify-content: center;
   position: absolute;
   top: 10px;
-  right: -15px;
+  right: 0px;
 }
 
 .share_list {
@@ -46,4 +48,35 @@
   &:hover {
     background-color: var(--grey-100);
   }
+}
+
+.toast_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background-color: #000000cc;
+  border-radius: 8px;
+  width: 524px;
+  height: 64px;
+  position: absolute;
+  bottom: 50px;
+
+  @media (max-width: 500px) {
+    width: 320px;
+    bottom: 100px;
+  }
+}
+
+.toast_message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+  font-size: 16px;
+}
+
+.closebtn {
+  cursor: pointer;
 }
