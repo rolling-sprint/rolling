@@ -59,3 +59,8 @@
   flex-direction: row;
   margin: 24px 0;
 }
+
+.errorMessage {
+  color: var(--error);
+  cursor: default;
+}

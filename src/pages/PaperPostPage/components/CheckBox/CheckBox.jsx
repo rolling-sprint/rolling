@@ -1,4 +1,4 @@
-import styles from "../PaperPostForm.module.scss";
+import styles from "../SelectBox/SelectBox.module.scss";
 import checkImage from "../../../../assets/images/Enabled.svg";
 
 const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {
@@ -9,6 +9,7 @@ const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {
   const imageStyle = {
     backgroundImage: image ? `url(${image})` : "none",
   };
+
   return (
     <>
       <label
