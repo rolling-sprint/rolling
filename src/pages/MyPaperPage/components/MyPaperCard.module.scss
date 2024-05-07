@@ -81,3 +81,18 @@
   font-weight: 400;
   font-weight: 400;
 }
+
+/*tablet*/
+@media (max-width: 1199px) {
+  .messageCard {
+    width: 352px;
+    height: 280px;
+  }
+}
+/*mobile*/
+@media (max-width: 767px) {
+  .messageCard {
+    width: 352px;
+    height: 280px;
+  }
+}

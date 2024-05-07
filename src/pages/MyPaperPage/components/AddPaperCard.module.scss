@@ -12,3 +12,17 @@
   width: 56px;
   height: 56px;
 }
+/*tablet*/
+@media (max-width: 1199px) {
+  .addPaperCard {
+    width: 352px;
+    height: 280px;
+  }
+}
+/*mobile*/
+@media (max-width: 767px) {
+  .addPaperCard {
+    width: 352px;
+    height: 280px;
+  }
+}
