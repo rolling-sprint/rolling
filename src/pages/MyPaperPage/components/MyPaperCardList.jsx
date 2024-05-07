@@ -17,7 +17,7 @@ function MyPaperCardList() {
   const [userMessage, setUserMessage] = useState(INITIAL_VALUE);
 
   const handleLoad = async () => {
-    const message = await getMessages(6692);
+    const message = await getMessages(6691);
     setUserMessage(message);
   };
 
