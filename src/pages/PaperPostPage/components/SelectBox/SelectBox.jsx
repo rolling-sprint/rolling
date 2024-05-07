@@ -48,15 +48,15 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
   const getColorFromCheckbox = (checkboxId) => {
     switch (checkboxId) {
       case "ckb1":
-        return "#ffe2ad"; //beige;
+        return "beige";
       case "ckb2":
-        return "#ecd9ff"; //purple
+        return "purple";
       case "ckb3":
-        return "#b1e4ff"; //blue;
+        return "blue";
       case "ckb4":
-        return "#d0f5c3"; //green;
+        return "green";
       default:
-        return "#ffe2ad"; //defalut : beige;
+        return "beige";
     }
   };
 

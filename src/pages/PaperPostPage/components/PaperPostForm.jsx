@@ -29,7 +29,7 @@ function PaperPostForm() {
         type === "image" ? backgroundSelection.imageURL : null,
     };
 
-    const { id } = await postPaper(requestBody);
+    const { id } = postPaper(requestBody);
     navigate(`/post/${id}`);
   };
 
