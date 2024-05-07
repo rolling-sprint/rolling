@@ -13,6 +13,10 @@
   align-items: flex-start;
   gap: 16px;
 
+  @media (max-width: 767px) {
+    gap: 12px;
+  }
+
   .selectLabel {
     width: 168px;
     height: 168px;
@@ -22,22 +26,42 @@
     border: 1px solid #00000015;
     cursor: pointer;
     background-size: cover;
+
+    @media (max-width: 767px) {
+      $mobile-width: calc((360px) / 4);
+      min-width: 154px;
+      min-height: 154px;
+      width: $mobile-width;
+      height: $mobile-width;
+      aspect-ratio: 1 / 1;
+    }
   }
 
-  // .selectLabel > .check {
-  // }
+  .selectLabel > .check {
+    @media (max-width: 767px) {
+      $mobile-width: calc((360px) / 4);
+      min-width: 154px;
+      min-height: 154px;
+      width: $mobile-width;
+      height: $mobile-width;
+      aspect-ratio: 1 / 1;
+    }
+  }
 
-  .selectLabel > .check > svg {
+  .selectLabel > .check {
     width: 44px;
     height: 44px;
     background: var(--gray-500);
     border-radius: 100px;
-    padding: 10px;
     margin: 62px;
     z-index: 1;
+
+    @media (max-width: 767px) {
+      margin: 55px;
+    }
   }
 
-  .checked svg {
+  .checked {
     display: block;
   }
 
@@ -59,5 +83,9 @@
 
   .green {
     background: #d0f5c3;
+  }
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
   }
 }

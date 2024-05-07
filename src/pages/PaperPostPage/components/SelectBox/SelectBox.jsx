@@ -60,11 +60,13 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
     }
   };
 
+  const fetchImgUrls = async () => {
+    const imgUrls = await getImages("background-images");
+    setImageUrls(imgUrls);
+  };
+
   useEffect(() => {
-    const fetchImageUrls = getImages("background-images");
-    if (fetchImageUrls && fetchImageUrls.length > 0) {
-      setImageUrls(fetchImageUrls);
-    }
+    fetchImgUrls();
   }, []);
 
   return (

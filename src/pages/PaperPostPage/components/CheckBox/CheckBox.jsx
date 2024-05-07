@@ -10,7 +10,9 @@ const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {
           type === "color" ? styles[color] : styles[image]
         } ${isChecked ? "checked" : ""}`}
       >
-        {isChecked && <image className={styles.check} src={checkImage} />}
+        {isChecked && (
+          <img className={styles.check} src={checkImage} alt="checked" />
+        )}
       </label>
       <input
         className={styles.checkboxInput}
