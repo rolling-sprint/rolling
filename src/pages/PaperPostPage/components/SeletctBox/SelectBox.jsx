@@ -48,15 +48,15 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
   const getColorFromCheckbox = (checkboxId) => {
     switch (checkboxId) {
       case "ckb1":
-        return "beige";
+        return "#ffe2ad"; //beige
       case "ckb2":
-        return "purple";
+        return "#ecd9ff"; //purple
       case "ckb3":
-        return "blue";
+        return "#b1e4ff"; //blue
       case "ckb4":
-        return "green";
+        return "#d0f5c3"; //green
       default:
-        return "beige";
+        return "#ffe2ad"; //defalut : beige
     }
   };
 
@@ -89,7 +89,7 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
             id={`ckb${index + 1}`}
             type={type}
             color={getColorFromCheckbox(`ckb${index + 1}`)}
-            image={`image${index + 1}`}
+            image={imageUrl}
             isChecked={isChecked[`ckb${index + 1}`]}
             onCheckboxChange={() => handleCheckboxChange(`ckb${index + 1}`)}
             checkIcon={<image src={checkImage} className={styles.check} />}

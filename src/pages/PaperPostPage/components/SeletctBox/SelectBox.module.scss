@@ -13,7 +13,7 @@
   align-items: flex-start;
   gap: 16px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 360px) {
     gap: 12px;
   }
 
@@ -27,7 +27,7 @@
     cursor: pointer;
     background-size: cover;
 
-    @media (max-width: 767px) {
+    @media (max-width: 360px) {
       $mobile-width: calc((100% - 4px) / 4);
       min-width: 154px;
       min-height: 154px;
@@ -38,7 +38,7 @@
   }
 
   .selectLabel > .check {
-    @media (max-width: 767px) {
+    @media (max-width: 360px) {
       $mobile-width: calc((100% - 4px) / 4);
       min-width: 154px;
       min-height: 154px;
@@ -54,7 +54,7 @@
     margin: 62px;
     z-index: 1;
 
-    @media (max-width: 767px) {
+    @media (max-width: 360px) {
       margin: 55px;
     }
   }
@@ -67,39 +67,7 @@
     display: none;
   }
 
-  .image1 {
-    background-image: url("https://picsum.photos/id/683/3840/2160");
-  }
-
-  .image2 {
-    background-image: url("https://picsum.photos/id/24/3840/2160");
-  }
-
-  .image3 {
-    background-image: url("https://picsum.photos/id/599/3840/2160");
-  }
-
-  .image4 {
-    background-image: url("https://picsum.photos/id/1058/3840/2160");
-  }
-
-  .beige {
-    background: #ffe2ad;
-  }
-
-  .purple {
-    background: #ecd9ff;
-  }
-
-  .blue {
-    background: #b1e4ff;
-  }
-
-  .green {
-    background: #d0f5c3;
-  }
-
-  @media (max-width: 767px) {
+  @media (max-width: 360px) {
     flex-wrap: wrap;
   }
 }
