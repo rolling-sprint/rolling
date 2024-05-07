@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { postPaper } from "../../../services/api";
 import styles from "./PaperPostForm.module.scss";
 import SelectBox from "./SelectBox/SelectBox";
