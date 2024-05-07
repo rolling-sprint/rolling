@@ -20,3 +20,17 @@
   margin: 43px 0 16px;
   color: rgba(0, 0, 0, 0.12);
 }
+
+@media (max-width: 767px) {
+  .card {
+    width: 208px;
+    height: 232px;
+    padding: 30px 22px 20px;
+  }
+  .image {
+    margin: 12px 0 8px;
+  }
+  .hr {
+    margin: 33px 0 8px;
+  }
+}

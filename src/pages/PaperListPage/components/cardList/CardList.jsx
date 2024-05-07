@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import RollingPaperCard from "../rollingPaperCard/RollingPaperCard";
 import {
   getCustomRecipient,
@@ -6,56 +6,107 @@ import {
 } from "../../../../services/api";
 import styles from "./CardList.module.scss";
 import { useNavigate } from "react-router-dom";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/scss/navigation";
+import "swiper/css";
 
 function CardList({ order = "" }) {
   const [list, setList] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
   const [prevUrl, setPrevUrl] = useState(null);
+
+  const nextButtonRef = useRef(null);
+  const prevButtonRef = useRef(null);
+  const swiperRef = useRef(null);
+
   const navigate = useNavigate();
 
   const navigateToPostPage = (id) => {
     navigate(`/post/${id}`);
   };
 
-  const handleLoad = async () => {
+  const handleLoad = useCallback(async () => {
     const { results, next, previous } = await getRecipientsList({
       sort: order,
     });
-    setList(results);
-    setNextUrl(next);
     setPrevUrl(previous);
-  };
-
-  const handlePrevButton = async () => {
-    const { results, next, previous } = await getCustomRecipient(prevUrl);
-    setList(results);
     setNextUrl(next);
-    setPrevUrl(previous);
-  };
-  const handleNextButton = async () => {
-    const { results, next, previous } = await getCustomRecipient(nextUrl);
     setList(results);
-    setNextUrl(next);
-    setPrevUrl(previous);
-  };
+  }, [order]);
 
   useEffect(() => {
     handleLoad();
-  }, []);
+  }, [handleLoad]);
+
+  // 다음 버튼 클릭 시 기존 배열에 추가
+  const loadMore = async () => {
+    if (nextUrl) {
+      const { next, previous, results } = await getCustomRecipient(nextUrl);
+      setNextUrl(next);
+      setPrevUrl(previous);
+      setList((prev) => {
+        const newData = results.filter(
+          (newItem) => !prev.some((item) => item.id == newItem.id)
+        );
+        return [...prev, ...newData];
+      });
+      if (swiperRef.current) {
+        setTimeout(() => {
+          swiperRef.current.update();
+          swiperRef.current.slideNext();
+        }, 100);
+      }
+    }
+  };
+
+  // 이전 슬라이드
+  const handlePrev = async () => {
+    const { next, previous } = await getCustomRecipient(prevUrl);
+    setNextUrl(next);
+    setPrevUrl(previous);
+    swiperRef.current.slidePrev();
+  };
+  console.log(nextUrl);
+  const handleSwiper = (swiper) => {
+    swiperRef.current = swiper;
+  };
+
+  const handleReachEnd = () => {
+    loadMore();
+  };
 
   return (
     <>
-      <div className={styles.list}>
-        {!list && <span>로딩 실패</span>}
-        {prevUrl && (
-          <button className={styles.buttonLeft} onClick={handlePrevButton} />
-        )}
-        {list &&
-          list.map((el) => (
-            <div
+      <div className={styles.cardList}>
+        <Swiper
+          className={styles.test}
+          onBeforeInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevButtonRef.current;
+            swiper.params.navigation.nextEl = nextButtonRef.current;
+          }}
+          modules={[Navigation, Pagination]}
+          slidesPerView={2}
+          slidesPerGroup={2}
+          onSwiper={handleSwiper}
+          spaceBetween={20}
+          onReachEnd={handleReachEnd}
+          breakpoints={{
+            768: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+            },
+            1200: {
+              slidesPerView: 4,
+              slidesPerGroup: 4,
+            },
+          }}
+        >
+          {list.map((el) => (
+            <SwiperSlide
               onClick={() => navigateToPostPage(el.id)}
               key={el.id}
-              className={styles.button}
+              className={styles.swiperSlide}
             >
               <RollingPaperCard
                 name={el.name}
@@ -65,10 +116,22 @@ function CardList({ order = "" }) {
                 backgroundColor={el.backgroundColor}
                 topReactions={el.topReactions}
               />
-            </div>
+            </SwiperSlide>
           ))}
+        </Swiper>
         {nextUrl && (
-          <button className={styles.buttonRight} onClick={handleNextButton} />
+          <button
+            onClick={loadMore}
+            ref={nextButtonRef}
+            className={styles.customSwiperButtonNext}
+          />
+        )}
+        {prevUrl && (
+          <button
+            onClick={handlePrev}
+            ref={prevButtonRef}
+            className={styles.customSwiperButtonPrev}
+          />
         )}
       </div>
     </>
