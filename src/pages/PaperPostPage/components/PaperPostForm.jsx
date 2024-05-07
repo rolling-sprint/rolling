@@ -7,7 +7,7 @@ import PrimaryButton from "../../../components/UI/PrimaryButton";
 
 function PaperPostForm() {
   const [inputValue, setInputValue] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [backgroundSelection, setBackgroundSelection] = useState({});
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function PaperPostForm() {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    setError("");
+    setError(value.trim() === "" ? true : false);
     setIsDisabled(value.trim() === "");
   };
 
@@ -29,7 +29,8 @@ function PaperPostForm() {
         type === "image" ? backgroundSelection.imageURL : null,
     };
 
-    postPaper(requestBody);
+    const { id } = await postPaper(requestBody);
+    navigate(`/post/${id}`);
   };
 
   const [type, setType] = useState("color");
@@ -53,9 +54,9 @@ function PaperPostForm() {
             placeholder="받는 사람 이름을 입력해주세요"
             value={inputValue}
             onChange={handleInputChange}
-            errorMessage={error}
           />
         </div>
+        {error && <div className={styles.errorMessage}>값을 입력해주세요.</div>}
         <div>
           <h2>배경화면을 선택해 주세요.</h2>
           <p>컬러를 선택하거나, 이미지를 선택할 수 있습니다.</p>
