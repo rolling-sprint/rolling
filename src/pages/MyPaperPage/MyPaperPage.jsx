@@ -1,9 +1,10 @@
 import MyPaperCardList from "./components/MyPaperCardList";
 
 function MyPaperPage() {
+  const INITIAL_ID = 6692;
   return (
     <div className="page-wrapper">
-      <MyPaperCardList />
+      <MyPaperCardList id={INITIAL_ID} />
     </div>
   );
 }

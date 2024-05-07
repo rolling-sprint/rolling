@@ -18,7 +18,8 @@ function MyPaperCard({ message }) {
     <div className={styles.messageCard}>
       <div className={styles.senderHeader}>
         <img src={message.profileImageURL} alt="프로필 이미지" />
-        <p className={styles.sender}>From. {message.sender}</p>
+        <p className={styles.sender}>From.</p>
+        <p className={styles.senderName}>{message.sender}</p>
         <p className={`${styles.relationship} ${relationship(message)}`}>
           {message.relationship}
         </p>

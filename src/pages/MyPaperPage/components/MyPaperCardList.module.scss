@@ -1,12 +1,18 @@
+body {
+  margin: 0;
+}
 .background {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: var(--purple-100);
+  overflow: scroll;
 }
+
 .cardList {
   position: absolute;
   top: 180px;

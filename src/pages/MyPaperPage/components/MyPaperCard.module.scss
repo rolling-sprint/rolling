@@ -24,12 +24,21 @@
     position: absolute;
     top: 28px;
     left: 94px;
-    color: var(--grey-600);
+    color: var(--black);
     font-size: 20px;
+    font-weight: 400;
+  }
+  .senderName {
+    position: absolute;
+    top: 28px;
+    left: 151px;
+    color: var(--black);
+    font-size: 20px;
+    font-weight: 700;
   }
   .relationship {
     position: absolute;
-    top: 58px;
+    top: 60px;
     left: 94px;
     width: 45px;
     height: 20px;
