@@ -1,4 +1,4 @@
-import styles from "../SeletctBox/SelectBox.module.scss";
+import styles from "../SelectBox/SelectBox.module.scss";
 import checkImage from "../../../../assets/images/Enabled.svg";
 
 const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {

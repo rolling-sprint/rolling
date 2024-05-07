@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { postPaper } from "../../../services/api";
 import styles from "./PaperPostForm.module.scss";
-import SelectBox from "./SeletctBox/SelectBox";
+import SelectBox from "./SelectBox/SelectBox";
 import PrimaryButton from "../../../components/UI/PrimaryButton";
 
 function PaperPostForm() {
