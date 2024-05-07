@@ -1,3 +1,12 @@
+.background {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--purple-100);
+}
 .cardList {
   position: absolute;
   top: 180px;
