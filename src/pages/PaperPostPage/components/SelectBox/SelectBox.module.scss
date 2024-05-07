@@ -40,8 +40,6 @@
   .selectLabel > .check {
     @media (max-width: 767px) {
       $mobile-width: calc((360px) / 4);
-      min-width: 154px;
-      min-height: 154px;
       width: $mobile-width;
       height: $mobile-width;
       aspect-ratio: 1 / 1;
