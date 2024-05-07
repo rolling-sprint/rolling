@@ -1,4 +1,4 @@
-import { TestPostReaction } from "../../../services/api";
+import { postReaction } from "../../../services/api";
 import styles from "./EmojiAdd.module.scss";
 import addImg from "./imgs/add.svg";
 import EmojiPicker from "emoji-picker-react";
@@ -47,7 +47,7 @@ const EmojiAdd = ({ recipientId }) => {
       if (emojiData.emoji === "" || emojiData.type === "") {
         return;
       }
-      await TestPostReaction(formData, recipientId);
+      await postReaction(formData, recipientId);
     };
 
     handlePostData(emojiData, recipientId);
