@@ -22,7 +22,9 @@ function RollingPaperCard({
 }) {
   let color;
   const Style = {
-    backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
+    backgroundImage: backgroundImage
+      ? `linear-gradient(to bottom, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54)), url(${backgroundImage})`
+      : "none",
     backgroundColor: `${backgroundColorList[`${backgroundColor}`]}`,
     color,
   };

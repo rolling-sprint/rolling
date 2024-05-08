@@ -1,10 +1,11 @@
 .swiperSlide {
-  padding: 20px 10px 20px;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .customSwiperButtonNext {
   position: absolute;
-  right: -25px;
+  right: -15px;
   top: 110px;
   width: 60px;
   height: 60px;
@@ -15,7 +16,7 @@
 
 .customSwiperButtonPrev {
   position: absolute;
-  left: -15px;
+  left: -30px;
   top: 110px;
   width: 60px;
   height: 60px;

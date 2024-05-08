@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss/navigation";
-import "swiper/css";
+import "swiper/scss";
 
 function CardList({ order = "" }) {
   const [list, setList] = useState([]);
@@ -101,12 +101,13 @@ function CardList({ order = "" }) {
     <>
       <div className={styles.cardList}>
         <Swiper
+          className={styles.swiper}
           onBeforeInit={(swiper) => {
             swiper.params.navigation.prevEl = prevButtonRef.current;
             swiper.params.navigation.nextEl = nextButtonRef.current;
           }}
           modules={[Navigation, Pagination]}
-          slidesPerView={3}
+          slidesPerView={2}
           slidesPerGroup={1}
           onSwiper={handleSwiper}
           spaceBetween={10}
@@ -114,7 +115,17 @@ function CardList({ order = "" }) {
           centeredSlidesBounds={true}
           onReachEnd={() => (!isMobile ? null : handleReachEnd())}
           breakpoints={{
-            1023: {
+            360: {
+              slidesPerView: 1.4,
+            },
+            428: {
+              slidesPerView: 1.7,
+            },
+
+            768: {
+              slidesPerView: 2.6,
+            },
+            1024: {
               slidesPerView: 4,
               slidesPerGroup: 4,
             },

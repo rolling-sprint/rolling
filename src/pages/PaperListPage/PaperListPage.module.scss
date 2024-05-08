@@ -24,3 +24,21 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 767px) {
+  .hot {
+    margin: 0 20px 74px;
+  }
+  .new {
+    margin: 0 20px 66px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hot {
+    margin: 0 24px 50px;
+  }
+  .new {
+    margin: 0 24px 156px;
+  }
+}
