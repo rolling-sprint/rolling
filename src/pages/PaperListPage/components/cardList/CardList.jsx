@@ -11,15 +11,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss/navigation";
 import "swiper/scss";
 
-function CardList({ order = "" }) {
+function CardList({ order = "", windowSize }) {
   const [list, setList] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
   const [prevUrl, setPrevUrl] = useState(null);
   const [isMobile, setIsMobile] = useState(true);
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
 
   const nextButtonRef = useRef(null);
   const prevButtonRef = useRef(null);
@@ -43,23 +39,8 @@ function CardList({ order = "" }) {
   }, [handleLoad]);
 
   useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
     setIsMobile(windowSize.width < 1200);
   }, [windowSize]);
-
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
 
   // 다음 버튼 클릭 시 기존 배열에 추가
   const loadMore = async () => {
