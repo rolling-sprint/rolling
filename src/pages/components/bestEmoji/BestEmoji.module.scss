@@ -1,3 +1,5 @@
+@import url("../../../styles//global.scss");
+
 .emoji_container {
   display: flex;
   gap: 10px;
@@ -10,8 +12,12 @@
   justify-content: center;
   align-items: center;
   gap: 3px;
-  background-color: rgba(0, 0, 0, 0.54);
-  color: white;
+  background-color: #0000008a;
+  color: var(--white);
   border: none;
   border-radius: 32px;
+}
+
+.emoji_count {
+  color: var(--white);
 }

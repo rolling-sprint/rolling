@@ -9,7 +9,7 @@ const BestEmoji = ({ topReactions }) => {
             return (
               <div key={emoji.id} className={styles.badge_emoji}>
                 <div>{emoji.emoji}</div>
-                <div>{emoji.count}</div>
+                <div className={styles.emoji_count}>{emoji.count}</div>
               </div>
             );
           })}

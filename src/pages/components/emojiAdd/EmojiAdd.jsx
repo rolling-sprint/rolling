@@ -70,12 +70,7 @@ const EmojiAdd = ({ recipientId }) => {
         )}
       </button>
       <div className={styles.emoji_picker_container}>
-        {emojiShow && (
-          <EmojiPicker
-            onEmojiClick={onEmojiAddClick}
-            className={styles.emoji_picker}
-          />
-        )}
+        {emojiShow && <EmojiPicker onEmojiClick={onEmojiAddClick} />}
       </div>
     </div>
   );

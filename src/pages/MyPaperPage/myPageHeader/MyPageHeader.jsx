@@ -20,12 +20,13 @@ const MyPageHeader = () => {
 
   useEffect(() => {
     getData(id);
-    console.log(myData);
-  }, []);
+  }, [id]);
 
   return (
     <div className={styles.header}>
-      <RollingPaperName {...myData} />
+      <div className={styles.mypage_name}>
+        <RollingPaperName {...myData} />
+      </div>
       <ProfileImagePreview {...myData} />
       <MessageCounterPrint {...myData} />
       <BestEmoji {...myData} />
