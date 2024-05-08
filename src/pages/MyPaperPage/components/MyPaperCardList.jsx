@@ -1,10 +1,11 @@
-import MyPaperCard from "./MyPaperCard";
+import { MyPaperCard } from "./MyPaperCard";
 import styles from "./MyPaperCardList.module.scss";
 import { useEffect, useState } from "react";
 import { getMessages } from "../../../services/api";
 import AddPaperCard from "./AddPaperCard";
+import Modal from "./Modal/Modal";
 
-function MyPaperCardList({ id }) {
+function MyPaperCardList({ id = 6691 }) {
   const INITIAL_VALUE = {
     sender: "",
     profileImage: null,
@@ -15,11 +16,16 @@ function MyPaperCardList({ id }) {
   };
 
   const [userMessage, setUserMessage] = useState(INITIAL_VALUE);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState(null);
+  const onClickButton = (message) => {
+    setSelectedMessage(message);
+    setModalIsOpen(true);
+  };
 
   const handleLoad = async () => {
-    const message = await getMessages(id);
+    const message = await getMessages(6691);
     setUserMessage(message);
-    console.log(message);
   };
 
   useEffect(() => {
@@ -38,8 +44,22 @@ function MyPaperCardList({ id }) {
         <AddPaperCard className={styles.addCard} />
         {sortedItems &&
           sortedItems.map((result, index) => (
-            <MyPaperCard className={styles.card} key={index} message={result} />
+            <MyPaperCard
+              className={styles.card}
+              onClick={() => onClickButton(result)}
+              key={index}
+              message={result}
+            />
           ))}
+        {modalIsOpen && (
+          <Modal
+            open={modalIsOpen}
+            onClose={() => {
+              setModalIsOpen(false);
+            }}
+            message={selectedMessage}
+          />
+        )}
       </div>
     </div>
   );
