@@ -2,6 +2,12 @@
   max-width: 1200px;
   width: 100%;
   z-index: 1;
+  padding: 124px 0 0;
+  margin: 0 auto;
+}
+
+.test {
+  margin: 0 auto;
 }
 
 h1 {
@@ -25,20 +31,28 @@ h1 {
   justify-content: center;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 360px) and (max-width: 767px) {
+  .container {
+    padding: 124px 20px;
+  }
   .hot {
-    margin: 0 20px 74px;
+    margin-bottom: 74px;
   }
   .new {
-    margin: 0 20px 66px;
+    margin-bottom: 66px;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .hot {
-    margin: 0 24px 50px;
+  .container {
+    padding: 124px 24px;
   }
   .new {
-    margin: 0 24px 156px;
+    margin-bottom: 156px;
   }
 }
