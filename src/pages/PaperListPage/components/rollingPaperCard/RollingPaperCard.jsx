@@ -4,6 +4,14 @@ import ProfileImagePreview from "../../../components/profileImagePreview/Profile
 import MessageCounter from "../../../components/messageCounter/MessageCounterPrint";
 import styles from "./RollingPaperCard.module.scss";
 import BestEmoji from "../../../components/bestEmoji/BestEmoji";
+
+const backgroundColorList = {
+  beige: "#ffe2ad",
+  purple: "#ecd9ff",
+  blue: "#b1e4ff",
+  green: "#d0f5c3",
+};
+
 function RollingPaperCard({
   name,
   messageCount,
@@ -15,7 +23,7 @@ function RollingPaperCard({
   let color;
   const Style = {
     backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
-    backgroundColor: `${backgroundColor}`,
+    backgroundColor: `${backgroundColorList[`${backgroundColor}`]}`,
     color,
   };
 

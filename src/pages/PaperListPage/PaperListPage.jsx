@@ -7,6 +7,8 @@ function PaperListPage() {
   const style = {
     justifyContent: "center",
     alignItems: "center",
+    padding: "124px 0",
+    margin: "0 auto",
   };
 
   const handlePage = () => {

@@ -1,6 +1,6 @@
 .swiperSlide {
-  padding: 20px 0 20px;
-  width: 100px;
+  padding: 20px 10px 20px;
+  width: 100%;
 }
 .customSwiperButtonNext {
   position: absolute;
@@ -27,4 +27,5 @@
 .cardList {
   position: relative;
   z-index: 0;
+  width: 100%;
 }
