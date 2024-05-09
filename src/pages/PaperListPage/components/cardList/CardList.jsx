@@ -20,6 +20,7 @@ function CardList({ order = "", isMobile }) {
   const prevButtonRef = useRef(null);
   const swiperRef = useRef(null);
   const navigate = useNavigate();
+
   const navigateToPostPage = (id) => {
     navigate(`/post/${id}`);
   };
@@ -36,6 +37,10 @@ function CardList({ order = "", isMobile }) {
   useEffect(() => {
     handleLoad();
   }, [handleLoad]);
+
+  const handleSwiper = (swiper) => {
+    swiperRef.current = swiper;
+  };
 
   // 다음 버튼 클릭 시 기존 배열에 추가
   const loadMore = async () => {
@@ -65,36 +70,35 @@ function CardList({ order = "", isMobile }) {
     setPrevUrl(previous);
     swiperRef.current.slidePrev();
   };
-  const handleSwiper = (swiper) => {
-    swiperRef.current = swiper;
-  };
 
   const handleReachEnd = () => {
     loadMore();
   };
 
+  const swiperSettings = {
+    className: styles.swiper,
+    onBeforeInit: (swiper) => {
+      swiper.params.navigation.prevEl = prevButtonRef.current;
+      swiper.params.navigation.nextEl = nextButtonRef.current;
+    },
+    modules: [Navigation],
+    slidesPerView: "auto",
+    slidesPerGroup: 1,
+    onSwiper: handleSwiper,
+    spaceBetween: 20,
+    onReachEnd: () => (!isMobile ? null : handleReachEnd()),
+    breakpoints: {
+      1920: {
+        slidesPerView: 4,
+        slidesPerGroup: 4,
+      },
+    },
+  };
+
   return (
     <>
       <div className={styles.cardList}>
-        <Swiper
-          className={styles.swiper}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevButtonRef.current;
-            swiper.params.navigation.nextEl = nextButtonRef.current;
-          }}
-          modules={[Navigation]}
-          slidesPerView={"auto"}
-          slidesPerGroup={1}
-          onSwiper={handleSwiper}
-          spaceBetween={20}
-          onReachEnd={() => (!isMobile ? null : handleReachEnd())}
-          breakpoints={{
-            1919: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
-            },
-          }}
-        >
+        <Swiper {...swiperSettings}>
           {list.map((el) => (
             <SwiperSlide
               onClick={() => navigateToPostPage(el.id)}
