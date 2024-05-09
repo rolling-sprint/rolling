@@ -24,6 +24,11 @@ body {
   padding: 0;
   padding-bottom: 90px;
 }
+.card {
+  :hover {
+    transform: scale(0.8, 0.8);
+  }
+}
 
 /*tablet*/
 @media (max-width: 1199px) {
