@@ -85,23 +85,24 @@ const ShareDropDown = () => {
             </div>
           )}
         </div>
+
+        {toast && (
+          <div className={styles.toast_box}>
+            <div className={styles.toast_message}>
+              <img src={completedImg} alt="완료이미지" />
+              URL이 복사 되었습니다.
+            </div>
+            <div>
+              <img
+                className={styles.closebtn}
+                onClick={onCloseBtn}
+                src={closeImg}
+                alt="닫기이미지"
+              />
+            </div>
+          </div>
+        )}
       </div>
-      {toast && (
-        <div className={styles.toast_box}>
-          <div className={styles.toast_message}>
-            <img src={completedImg} alt="완료이미지" />
-            URL이 복사 되었습니다.
-          </div>
-          <div>
-            <img
-              className={styles.closebtn}
-              onClick={onCloseBtn}
-              src={closeImg}
-              alt="닫기이미지"
-            />
-          </div>
-        </div>
-      )}
     </>
   );
 };

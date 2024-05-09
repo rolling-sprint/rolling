@@ -61,10 +61,16 @@
   width: 524px;
   height: 64px;
   position: absolute;
-  bottom: 50px;
+  top: 800px;
+  right: 700px;
+
+  @media (max-width: 768px) {
+    right: 110px;
+  }
 
   @media (max-width: 500px) {
     width: 320px;
+    right: 100px;
   }
 }
 

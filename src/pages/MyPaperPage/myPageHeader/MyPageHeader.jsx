@@ -54,7 +54,7 @@ const MyPageHeader = () => {
           <div className={styles.mypage_name}>
             <RollingPaperName {...myData} />
           </div>
-          {headerWidth <= 870 ? (
+          {headerWidth <= 900 ? (
             <></>
           ) : (
             <>
