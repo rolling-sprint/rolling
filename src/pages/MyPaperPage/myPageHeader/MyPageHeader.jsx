@@ -8,6 +8,7 @@ import RollingPaperName from "../../components/rollingPaperName/RollingPaperName
 import styles from "./MyPageHeader.module.scss";
 import { useEffect, useState } from "react";
 import { getRecipientDetail } from "../../../services/api";
+import ShareDropDown from "../../components/shareDropDown/ShareDropDown";
 
 const MyPageHeader = () => {
   const { id } = useParams();
@@ -44,7 +45,8 @@ const MyPageHeader = () => {
             <BestEmoji {...myData} />
             <EmojiListDropDown recipientId={id} />
             <EmojiAdd recipientId={id} />
-            <div>공유하기</div>
+            <div className={styles.pole}></div>
+            <ShareDropDown />
           </div>
         </div>
       ) : (
@@ -65,7 +67,7 @@ const MyPageHeader = () => {
           <EmojiListDropDown recipientId={id} />
           <EmojiAdd recipientId={id} />
           <div className={styles.pole}></div>
-          <div>공유하기</div>
+          <ShareDropDown />
         </div>
       )}
     </div>
