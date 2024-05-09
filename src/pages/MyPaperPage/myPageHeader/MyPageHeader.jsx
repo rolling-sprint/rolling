@@ -12,6 +12,7 @@ import { getRecipientDetail } from "../../../services/api";
 const MyPageHeader = () => {
   const { id } = useParams();
   const [myData, setMyData] = useState([]);
+  const [headerWidth, setHeaderWidth] = useState(window.innerWidth);
 
   const getData = async (id) => {
     const data = await getRecipientDetail(id);
@@ -22,17 +23,51 @@ const MyPageHeader = () => {
     getData(id);
   }, [id]);
 
+  useEffect(() => {
+    const resizeWidth = () => {
+      setHeaderWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", resizeWidth);
+    return () => {
+      window.removeEventListener("resize", resizeWidth);
+    };
+  }, []);
+
   return (
-    <div className={styles.header}>
-      <div className={styles.mypage_name}>
-        <RollingPaperName {...myData} />
-      </div>
-      <ProfileImagePreview {...myData} />
-      <MessageCounterPrint {...myData} />
-      <BestEmoji {...myData} />
-      <EmojiListDropDown recipientId={id} />
-      <EmojiAdd recipientId={id} />
-      <div>공유드롭다운</div>
+    <div className={styles.header_container}>
+      {headerWidth <= 600 ? (
+        <div className={styles.mobile_header}>
+          <div className={styles.header}>
+            <RollingPaperName {...myData} />
+          </div>
+          <div className={styles.header}>
+            <BestEmoji {...myData} />
+            <EmojiListDropDown recipientId={id} />
+            <EmojiAdd recipientId={id} />
+            <div>공유하기</div>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.header}>
+          <div className={styles.mypage_name}>
+            <RollingPaperName {...myData} />
+          </div>
+          {headerWidth <= 870 ? (
+            <></>
+          ) : (
+            <>
+              <ProfileImagePreview {...myData} />
+              <MessageCounterPrint {...myData} />
+              <div className={styles.pole}></div>
+            </>
+          )}
+          <BestEmoji {...myData} />
+          <EmojiListDropDown recipientId={id} />
+          <EmojiAdd recipientId={id} />
+          <div className={styles.pole}></div>
+          <div>공유하기</div>
+        </div>
+      )}
     </div>
   );
 };
