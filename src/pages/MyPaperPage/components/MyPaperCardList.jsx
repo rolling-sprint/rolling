@@ -5,7 +5,7 @@ import { getMessages } from "../../../services/api";
 import AddPaperCard from "./AddPaperCard";
 import Modal from "./Modal/Modal";
 
-function MyPaperCardList({ id = 6691 }) {
+function MyPaperCardList({ id }) {
   const INITIAL_VALUE = {
     sender: "",
     profileImage: null,
@@ -24,13 +24,13 @@ function MyPaperCardList({ id = 6691 }) {
   };
 
   const handleLoad = async () => {
-    const message = await getMessages(6691);
+    const message = await getMessages(id);
     setUserMessage(message);
   };
 
   useEffect(() => {
     handleLoad();
-  }, [id]);
+  }, []);
 
   const sortedItems = userMessage.results
     ? userMessage.results
