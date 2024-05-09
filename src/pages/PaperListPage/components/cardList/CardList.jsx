@@ -6,16 +6,15 @@ import {
 } from "../../../../services/api";
 import styles from "./CardList.module.scss";
 import { useNavigate } from "react-router-dom";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss/navigation";
 import "swiper/scss";
 
-function CardList({ order = "", windowSize }) {
+function CardList({ order = "", isMobile }) {
   const [list, setList] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
   const [prevUrl, setPrevUrl] = useState(null);
-  const [isMobile, setIsMobile] = useState(true);
 
   const nextButtonRef = useRef(null);
   const prevButtonRef = useRef(null);
@@ -37,10 +36,6 @@ function CardList({ order = "", windowSize }) {
   useEffect(() => {
     handleLoad();
   }, [handleLoad]);
-
-  useEffect(() => {
-    setIsMobile(windowSize.width < 1200);
-  }, [windowSize]);
 
   // 다음 버튼 클릭 시 기존 배열에 추가
   const loadMore = async () => {
@@ -87,26 +82,14 @@ function CardList({ order = "", windowSize }) {
             swiper.params.navigation.prevEl = prevButtonRef.current;
             swiper.params.navigation.nextEl = nextButtonRef.current;
           }}
-          modules={[Navigation, Pagination]}
-          slidesPerView={2}
+          modules={[Navigation]}
+          slidesPerView={"auto"}
           slidesPerGroup={1}
           onSwiper={handleSwiper}
-          spaceBetween={10}
-          centeredSlides={true}
-          centeredSlidesBounds={true}
+          spaceBetween={20}
           onReachEnd={() => (!isMobile ? null : handleReachEnd())}
           breakpoints={{
-            360: {
-              slidesPerView: 1.4,
-            },
-            428: {
-              slidesPerView: 1.7,
-            },
-
-            768: {
-              slidesPerView: 2.6,
-            },
-            1024: {
+            1919: {
               slidesPerView: 4,
               slidesPerGroup: 4,
             },
