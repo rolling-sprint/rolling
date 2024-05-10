@@ -1,9 +1,41 @@
-import { Link } from "react-router-dom";
 import IntroEmoji from "../../assets/images/Intro_Emoji.png";
 import IntroRollingPaper from "../../assets/images/Intro_RollingPaper.png";
 import styles from "./HomePage.module.scss";
+import PrimaryButton from "../../components/UI/PrimaryButton";
+import { useEffect, useRef, useState } from "react";
 
 function HomePage() {
+  function handleClick(e) {
+    window.location.href = "/list";
+  }
+
+  const widthMax = useRef(false);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+  });
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowSize.width < 1248) {
+      widthMax.current = true;
+    } else {
+      widthMax.current = false;
+    }
+  }, [windowSize]);
+
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+    });
+  };
+
   return (
     <div className={styles.home_wrapper}>
       <section className={styles.contents}>
@@ -48,11 +80,14 @@ function HomePage() {
           </div>
         </div>
       </section>
-      <div className={styles.bottom}>
-        <Link to={"/list"} className={styles.bottom_cta}>
-          구경해보기
-        </Link>
-      </div>
+
+      <PrimaryButton
+        onClick={handleClick}
+        type={"button"}
+        WidthMax={widthMax.current}
+      >
+        구경해보기
+      </PrimaryButton>
     </div>
   );
 }

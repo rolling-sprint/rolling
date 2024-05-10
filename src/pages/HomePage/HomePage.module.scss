@@ -92,31 +92,6 @@
   height: 204px;
 }
 
-.bottom {
-  margin-top: 24px;
-  padding-block: 24px;
-  display: flex;
-  justify-content: center;
-}
-
-.bottom_cta {
-  @extend .Regular18;
-
-  width: 280px;
-  padding-block: 14px;
-  padding-inline: 24px;
-  background: var(--purple-600);
-  color: var(--white);
-  text-align: center;
-  border-radius: 12px;
-
-  display: block;
-
-  &:active {
-    color: var(--white);
-  }
-}
-
 /* Tablet */
 @media (max-width: 1247px) {
   .home_wrapper {
@@ -155,10 +130,6 @@
     order: 3;
     margin-inline: auto;
     padding-inline: 0;
-  }
-
-  .bottom_cta {
-    width: 100%;
   }
 }
 
