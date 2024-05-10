@@ -12,8 +12,7 @@ function HomePage() {
             <div className={styles.intro_card_badge}>Point.01</div>
             <h2 className={styles.intro_card_title}>
               누구나 손쉽게, 온라인
-              <br className={styles.line_break} />
-              롤링 페이퍼를 만들 수 있어요
+              <br className={styles.line_break} /> 롤링 페이퍼를 만들 수 있어요
             </h2>
             <p className={styles.intro_card_description}>
               로그인 없이 자유롭게 만들어요.
@@ -33,8 +32,7 @@ function HomePage() {
             <div className={styles.intro_card_badge}>Point.02</div>
             <h2 className={styles.intro_card_title}>
               서로에게 이모지로 감정을
-              <br className={styles.line_break} />
-              표현해보세요
+              <br className={styles.line_break} /> 표현해보세요
             </h2>
             <p className={styles.intro_card_description}>
               롤링 페이퍼에 이모지를 추가할 수 있어요.
