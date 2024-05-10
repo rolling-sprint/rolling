@@ -14,7 +14,6 @@ export default function MessageCounterPrint({
   };
   if (isPhone) {
     font.count = "bold14";
-  } else {
     font.text = "regular14";
   }
 
