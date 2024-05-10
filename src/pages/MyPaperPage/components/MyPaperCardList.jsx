@@ -2,30 +2,29 @@ import { MyPaperCard } from "./MyPaperCard";
 import styles from "./MyPaperCardList.module.scss";
 import { useEffect, useState } from "react";
 import { getMessages, getRecipientDetail } from "../../../services/api";
-import AddPaperCard from "./AddPaperCard";
+import AddMessageCard from "./AddMessageCard";
 import Modal from "./Modal/Modal";
 
+const INITIAL_VALUE = {
+  sender: "",
+  profileImage: null,
+  relationship: "",
+  content: "",
+  font: "",
+  createdAt: "",
+};
+const INITIAL_RECIPIENT_VALUE = {
+  backgroundColor: "",
+  backgroundImageURL: null,
+};
 function MyPaperCardList({ id }) {
-  const INITIAL_VALUE = {
-    sender: "",
-    profileImage: null,
-    relationship: "",
-    content: "",
-    font: "",
-    createdAt: "",
-  };
-  const INITIAL_RECIPIENT_VALUE = {
-    backgroundColor: "",
-    backgroundImageURL: null,
-  };
-
   const [userMessage, setUserMessage] = useState(INITIAL_VALUE);
   const [recipient, setRecipient] = useState(INITIAL_RECIPIENT_VALUE);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const onClickButton = (message) => {
     setSelectedMessage(message);
-    setModalIsOpen(true);
+    setIsModalOpen(true);
   };
 
   const handleLoad = async () => {
@@ -60,14 +59,15 @@ function MyPaperCardList({ id }) {
 
   const imageStyle = {
     backgroundImage: recipient.backgroundImageURL
-      ? `url(${recipient.backgroundImageURL})`
+      ? ` linear-gradient(to bottom, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54)), 
+          url(${recipient.backgroundImageURL})`
       : "none",
   };
 
   const sortedItems = userMessage.results
-    ? userMessage.results
-        .slice()
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    ? userMessage.results.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      )
     : [];
 
   return (
@@ -76,21 +76,21 @@ function MyPaperCardList({ id }) {
       style={recipient.backgroundImageURL ? imageStyle : ColorStyle}
     >
       <div className={styles.cardList}>
-        <AddPaperCard className={styles.addCard} />
+        <AddMessageCard className={styles.addCard} id={id} />
         {sortedItems &&
-          sortedItems.map((result, index) => (
+          sortedItems.map((result) => (
             <MyPaperCard
               className={styles.card}
               onClick={() => onClickButton(result)}
-              key={index}
+              key={result.id}
               message={result}
             />
           ))}
-        {modalIsOpen && (
+        {isModalOpen && (
           <Modal
-            open={modalIsOpen}
+            open={isModalOpen}
             onClose={() => {
-              setModalIsOpen(false);
+              setIsModalOpen(false);
             }}
             message={selectedMessage}
           />

@@ -9,8 +9,9 @@ body {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--purple-100);
+  background-size: cover;
   overflow: scroll;
+  z-index: -999;
 }
 
 .cardList {
@@ -23,11 +24,6 @@ body {
   justify-self: stretch;
   padding: 0;
   padding-bottom: 90px;
-}
-.card {
-  :hover {
-    transform: scale(0.8, 0.8);
-  }
 }
 
 /*tablet*/

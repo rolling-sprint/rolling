@@ -1,15 +1,15 @@
-import styles from "./AddPaperCard.module.scss";
+import styles from "./AddMessageCard.module.scss";
 import addButton from "../../../../src/assets/icons/add-papercard-button.svg";
 import { Link, useNavigate } from "react-router-dom";
 
-function AddPaperCard() {
+function AddMessageCard({ id }) {
   const navigate = useNavigate();
   const addCard = () => {
-    navigate("/post/6789/message");
+    navigate(`/post/${id}/message`);
   };
   return (
-    <div className={styles.addPaperCard}>
-      <Link to="/post/6789/message">
+    <div className={styles.addMessageCard}>
+      <Link to="/post/${id}/message">
         <button className={styles.addButton} onClick={addCard}>
           <img
             className={styles.addButtonImg}
@@ -22,4 +22,4 @@ function AddPaperCard() {
   );
 }
 
-export default AddPaperCard;
+export default AddMessageCard;

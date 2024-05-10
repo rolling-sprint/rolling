@@ -24,7 +24,7 @@ export function MyPaperCard({ message, onClick }) {
           {message.relationship}
         </p>
       </div>
-      <div className={styles.messageBorderLine}></div>
+      <hr />
       <p className={styles.content}>{message.content}</p>
       <p className={styles.createDate}>{formatDate(message.createdAt)}</p>
     </div>
