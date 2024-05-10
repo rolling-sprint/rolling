@@ -80,7 +80,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
       <PrimaryButton
         onClick={handleClick}
         type={"button"}
