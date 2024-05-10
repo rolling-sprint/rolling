@@ -1,6 +1,6 @@
 import { postReaction } from "../../../services/api";
 import styles from "./EmojiAdd.module.scss";
-import addImg from "./imgs/add.svg";
+import addImg from "../../../assets/images/add.svg";
 import EmojiPicker from "emoji-picker-react";
 import { useEffect, useState } from "react";
 

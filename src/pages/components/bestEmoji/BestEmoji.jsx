@@ -1,9 +1,10 @@
 import styles from "./BestEmoji.module.scss";
 
-const BestEmoji = ({ topReactions }) => {
+const BestEmoji = ({ topReactions = [] }) => {
+  console.log(topReactions);
   return (
     <>
-      {topReactions && (
+      {topReactions.length !== 0 ? (
         <div className={styles.emoji_container}>
           {topReactions.map((emoji) => {
             return (
@@ -14,6 +15,8 @@ const BestEmoji = ({ topReactions }) => {
             );
           })}
         </div>
+      ) : (
+        <div>이모지를 추가해주세요</div>
       )}
     </>
   );

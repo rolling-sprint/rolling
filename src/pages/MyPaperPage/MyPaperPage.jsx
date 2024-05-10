@@ -1,5 +1,12 @@
+import MyPageHeader from "./myPageHeader/MyPageHeader";
+
 function MyPaperPage() {
-  return <div className="page-wrapper"></div>;
+  return (
+    <>
+      <MyPageHeader />
+      <div className="page-wrapper"></div>
+    </>
+  );
 }
 
 export default MyPaperPage;
