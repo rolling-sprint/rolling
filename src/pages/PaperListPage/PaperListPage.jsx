@@ -21,7 +21,7 @@ function PaperListPage() {
   }, []);
 
   useEffect(() => {
-    if (windowSize.width <= 1920) {
+    if (windowSize.width < 1920) {
       widthMax.current = true;
     } else {
       widthMax.current = false;

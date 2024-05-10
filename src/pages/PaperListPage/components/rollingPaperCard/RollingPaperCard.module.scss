@@ -14,9 +14,40 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-position: center;
   background-size: cover;
+  box-shadow: 0px 2px 12px 0 rgba(0, 0, 0, 0.08);
   &:hover {
     cursor: pointer;
   }
+}
+
+.purple {
+  background-color: #ecd9ff;
+  background-image: url("../../../../assets/images/pattern_01.svg");
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.beige {
+  background-color: #ffe2ad;
+  background-image: url("../../../../assets/images/pattern_02.svg");
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.blue {
+  background-color: #b1e4ff;
+  background-image: url("../../../../assets/images/pattern_03.svg");
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.green {
+  background-color: #d0f5c3;
+  background-image: url("../../../../assets/images/pattern_04.svg");
+  background-size: 142px 142px;
+  background-repeat: no-repeat;
+  background-position: right bottom;
 }
 
 .hr {
@@ -36,5 +67,18 @@
   }
   .hr {
     margin: 33px 0 8px;
+  }
+
+  .beige {
+    background-size: 107.4px 142px;
+  }
+  .blue {
+    background-size: 107.4px 142px;
+  }
+  .purple {
+    background-size: 107.4px 142px;
+  }
+  .green {
+    background-size: 107.4px 142px;
   }
 }

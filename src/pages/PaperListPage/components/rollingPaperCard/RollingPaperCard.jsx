@@ -5,13 +5,6 @@ import MessageCounter from "../../../components/messageCounter/MessageCounterPri
 import styles from "./RollingPaperCard.module.scss";
 import BestEmoji from "../../../components/bestEmoji/BestEmoji";
 
-const backgroundColorList = {
-  beige: "#ffe2ad",
-  purple: "#ecd9ff",
-  blue: "#b1e4ff",
-  green: "#d0f5c3",
-};
-
 function RollingPaperCard({
   name,
   messageCount,
@@ -21,17 +14,19 @@ function RollingPaperCard({
   topReactions,
 }) {
   let color;
-  const Style = {
+  const style = {
     backgroundImage: backgroundImage
       ? `linear-gradient(to bottom, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54)), url(${backgroundImage})`
-      : "none",
-    backgroundColor: `${backgroundColorList[`${backgroundColor}`]}`,
-    color,
+      : {},
+    backgroundSize: backgroundImage ? "cover" : {},
   };
 
   return (
     <>
-      <div className={styles.card} style={Style}>
+      <div
+        className={`${styles.card} ${styles[backgroundColor]}`}
+        style={style}
+      >
         <div className={styles.name}>
           <RollingPaperName name={name} isBackgroundImage={backgroundImage} />
         </div>
