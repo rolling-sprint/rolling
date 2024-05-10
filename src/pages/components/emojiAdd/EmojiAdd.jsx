@@ -38,11 +38,6 @@ const EmojiAdd = ({ recipientId }) => {
   };
 
   useEffect(() => {
-    const handleWidth = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleWidth);
-
     const handlePostData = async (formData, recipientId) => {
       if (emojiData.emoji === "" || emojiData.type === "") {
         return;
@@ -51,11 +46,18 @@ const EmojiAdd = ({ recipientId }) => {
     };
 
     handlePostData(emojiData, recipientId);
+  }, [emojiData, recipientId]);
+
+  useEffect(() => {
+    const handleWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleWidth);
 
     return () => {
       window.removeEventListener("resize", handleWidth);
     };
-  }, [emojiData, recipientId]);
+  }, []);
 
   return (
     <div className={styles.emoji_container}>

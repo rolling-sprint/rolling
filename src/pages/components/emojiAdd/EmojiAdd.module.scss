@@ -27,4 +27,8 @@
   position: absolute;
   top: 45px;
   right: 30px;
+
+  @media (max-width: 500px) {
+    right: -30px;
+  }
 }

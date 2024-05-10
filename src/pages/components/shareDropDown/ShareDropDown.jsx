@@ -58,9 +58,9 @@ const ShareDropDown = () => {
     navigator.clipboard.writeText(window.location.href);
     setToast(true);
 
-    // setTimeout(() => {
-    //   setToast(false);
-    // }, [5000]);
+    setTimeout(() => {
+      setToast(false);
+    }, [5000]);
   };
 
   const onCloseBtn = () => {

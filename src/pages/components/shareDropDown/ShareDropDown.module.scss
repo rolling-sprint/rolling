@@ -35,6 +35,16 @@
   top: 10px;
   right: 0px;
   background-color: var(--white);
+
+  @keyframes dropdown {
+    0% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  animation: dropdown 0.3s ease;
 }
 
 .share_list {
@@ -63,6 +73,10 @@
   left: 50%;
   transform: translate(-50%, 0);
 
+  :hover {
+    cursor: default;
+  }
+
   /* 토스팅 애니메이션 */
   @keyframes toasting {
     0% {
@@ -72,30 +86,10 @@
       transform: translate(-50%, 0);
     }
   }
-  animation: toasting 0.8s ease;
-
-  :hover {
-    cursor: default;
-  }
-
-  @media (max-width: 768px) {
-    left: 10%;
-  }
+  animation: toasting 0.5s ease;
 
   @media (max-width: 500px) {
     width: 320px;
-    left: 50%;
-    // transform: translate(-50%, 0);
-
-    @keyframes toasting {
-      0% {
-        transform: translate(-50%, 60%);
-      }
-      100% {
-        transform: translate(-50%, 0);
-      }
-    }
-    animation: toasting 0.8s ease;
   }
 }
 
