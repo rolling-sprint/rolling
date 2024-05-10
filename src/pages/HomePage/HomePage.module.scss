@@ -1,5 +1,16 @@
 @use "../../components/UI/text/Text.module.scss" as *;
 
+.home_wrapper {
+  padding-top: 124px;
+  padding-inline: 24px;
+  padding-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1248px;
+  margin-inline: auto;
+}
+
 .contents {
   width: 100%;
   display: flex;

@@ -5,7 +5,7 @@ import styles from "./HomePage.module.scss";
 
 function HomePage() {
   return (
-    <div className="page-wrapper">
+    <div className={styles.home_wrapper}>
       <section className={styles.contents}>
         <div className={`${styles.intro_card} ${styles.rolling}`}>
           <div className={styles.intro_card_content}>
