@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss/navigation";
 import "swiper/scss";
 
-function CardList({ order = "", isMobile }) {
+function CardList({ order = "", isMobile, isPhone }) {
   const [list, setList] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
   const [prevUrl, setPrevUrl] = useState(null);
@@ -112,6 +112,7 @@ function CardList({ order = "", isMobile }) {
                 backgroundImage={el.backgroundImageURL}
                 backgroundColor={el.backgroundColor}
                 topReactions={el.topReactions}
+                isPhone={isPhone}
               />
             </SwiperSlide>
           ))}

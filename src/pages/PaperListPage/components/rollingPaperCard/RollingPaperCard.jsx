@@ -12,8 +12,8 @@ function RollingPaperCard({
   backgroundImage,
   backgroundColor,
   topReactions,
+  isPhone,
 }) {
-  let color;
   const style = {
     backgroundImage: backgroundImage
       ? `linear-gradient(to bottom, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54)), url(${backgroundImage})`
@@ -28,7 +28,11 @@ function RollingPaperCard({
         style={style}
       >
         <div className={styles.name}>
-          <RollingPaperName name={name} isBackgroundImage={backgroundImage} />
+          <RollingPaperName
+            name={name}
+            isBackgroundImage={backgroundImage}
+            isPhone={isPhone}
+          />
         </div>
         <div className={styles.image}>
           <ProfileImagePreview
@@ -40,6 +44,7 @@ function RollingPaperCard({
           page="list"
           messageCount={messageCount}
           isBackgroundImage={backgroundImage}
+          isPhone={isPhone}
         />
         <hr className={styles.hr} />
         <BestEmoji topReactions={topReactions} />

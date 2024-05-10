@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from "react";
 function PaperListPage() {
   const navigate = useNavigate();
   const widthMax = useRef(false);
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(null);
+  const [isPhone, setIsPhone] = useState(null);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -21,7 +22,7 @@ function PaperListPage() {
   }, []);
 
   useEffect(() => {
-    if (windowSize.width < 1920) {
+    if (windowSize.width >= 360 && windowSize.width < 768) {
       widthMax.current = true;
     } else {
       widthMax.current = false;
@@ -41,17 +42,18 @@ function PaperListPage() {
 
   useEffect(() => {
     setIsMobile(windowSize.width < 1920);
+    setIsPhone(windowSize.width >= 360 && windowSize.width < 768);
   }, [windowSize]);
 
   return (
     <div className={styles.container}>
       <div className={styles.hot}>
         <h1>인기 롤링 페이퍼 🔥</h1>
-        <CardList order="like" isMobile={isMobile} />
+        <CardList order="like" isMobile={isMobile} isPhone={isPhone} />
       </div>
       <div className={styles.new}>
         <h1>최근에 만든 롤링 페이퍼⭐</h1>
-        <CardList isMobile={isMobile} />
+        <CardList isMobile={isMobile} isPhone={isPhone} />
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButton onClick={handlePage} WidthMax={widthMax.current}>
