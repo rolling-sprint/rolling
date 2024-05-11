@@ -7,7 +7,7 @@ import PrimaryButton from "../../../components/UI/PrimaryButton";
 
 function PaperPostForm() {
   const [inputValue, setInputValue] = useState("");
-  const [error, setError] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [backgroundSelection, setBackgroundSelection] = useState({});
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function PaperPostForm() {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    setError(value.trim() === "" ? true : false);
+    setIsError(value.trim() === "" ? true : false);
     setIsDisabled(value.trim() === "");
   };
 
@@ -26,21 +26,21 @@ function PaperPostForm() {
       name: inputValue,
       backgroundColor: backgroundSelection.backgroundColor,
       backgroundImageURL:
-        type === "image" ? backgroundSelection.imageURL : null,
+        backgroundtype === "image" ? backgroundSelection.imageURL : null,
     };
 
     const { id } = await postPaper(requestBody);
     navigate(`/post/${id}`);
   };
 
-  const [type, setType] = useState("color");
+  const [backgroundtype, setBackgroundType] = useState("color");
 
   const handleSelectionChange = (selection) => {
     setBackgroundSelection(selection);
   };
 
-  const handleSelectTypeChange = (newType) => {
-    setType(newType);
+  const handleSelectTypeChange = (backgroundType) => {
+    setBackgroundType(backgroundType);
   };
 
   return (
@@ -59,7 +59,9 @@ function PaperPostForm() {
             className={styles.sendToInput}
           />
         </div>
-        {error && <div className={styles.errorMessage}>값을 입력해주세요.</div>}
+        {isError && (
+          <div className={styles.errorMessage}>값을 입력해주세요.</div>
+        )}
         <div className={styles.textBox}>
           <h2 className={styles.title}>배경화면을 선택해 주세요.</h2>
           <p className={styles.subTitle}>
@@ -67,7 +69,7 @@ function PaperPostForm() {
           </p>
         </div>
         <SelectBox
-          type={type}
+          type={backgroundtype}
           onSelectionChange={handleSelectionChange}
           onSelectTypeChange={handleSelectTypeChange}
         />

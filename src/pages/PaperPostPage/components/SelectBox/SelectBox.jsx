@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { getImages } from "../../../../services/api";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import Checkbox from "../CheckBox/CheckBox";
-import checkImage from "../../../../assets/images/Enabled.svg";
+import CheckImage from "../../../../assets/images/Enabled.svg";
 import styles from "./SelectBox.module.scss";
 
-const Select = [
+const SELECT = [
   { label: "컬러", value: "color" },
   { label: "이미지", value: "image" },
 ];
 
-const SelectColorDefault = {
+const SELECT_COLOR_DEFAULT = {
   ckb1: true,
   ckb2: false,
   ckb3: false,
@@ -18,8 +18,8 @@ const SelectColorDefault = {
 };
 
 function SelectBox({ onSelectionChange, onSelectTypeChange }) {
-  const [type, setType] = useState("color");
-  const [isChecked, setIsChecked] = useState(SelectColorDefault);
+  const [backgroundType, setBackgroundType] = useState("color");
+  const [isChecked, setIsChecked] = useState(SELECT_COLOR_DEFAULT);
   const [imageUrls, setImageUrls] = useState([]);
 
   const handleCheckboxChange = (checkboxId) => {
@@ -73,11 +73,11 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
     <>
       <div className={styles.toggleBox}>
         <ToggleButton
-          items={Select}
-          selected={type}
-          onClickItem={(type) => {
-            setType(type);
-            onSelectTypeChange(type);
+          items={SELECT}
+          selected={backgroundType}
+          onClickItem={(selectType) => {
+            setBackgroundType(selectType);
+            onSelectTypeChange(selectType);
           }}
         />
       </div>
@@ -87,12 +87,12 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
           <Checkbox
             key={`ckb${index + 1}`}
             id={`ckb${index + 1}`}
-            type={type}
+            type={backgroundType}
             color={getColorFromCheckbox(`ckb${index + 1}`)}
             image={imageUrl}
             isChecked={isChecked[`ckb${index + 1}`]}
             onCheckboxChange={() => handleCheckboxChange(`ckb${index + 1}`)}
-            checkIcon={<image src={checkImage} className={styles.check} />}
+            checkIcon={<image src={CheckImage} className={styles.check} />}
           />
         ))}
       </div>
