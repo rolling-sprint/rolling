@@ -22,7 +22,6 @@ const useWindowSize = () => {
   return windowSize;
 };
 
-
 const useBreakPoint = () => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width < 1920;

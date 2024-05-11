@@ -37,32 +37,26 @@ function CardList({ order = "", isMobile, isPhone, onClick}) {
     swiperRef.current = swiper;
   };
 
-  // 다음 버튼 클릭 시 기존 배열에 추가
-  const loadMoreCards = async () => {
-    if (nextUrl) {
-      const { next, previous, results } = await getCustomRecipient(nextUrl);
-      setNextUrl(next);
-      setPrevUrl(previous);
-      setCardList((prev) => {
-        const newData = results.filter(
-          (newItem) => !prev.some((item) => item.id === newItem.id)
-        );
-        return [...prev, ...newData];
-      });
-    }
-  };
-
-
   const handleNextButtonClick = async () => {
-      if (!isMobile) {
-        setTimeout(() => {
-          swiperRef.current.update();
-          swiperRef.current.slideNext();
-        }, 100);
-        return;
-      }
-      loadMoreCards();
-  }
+    if (nextUrl) {
+        const { next, previous, results } = await getCustomRecipient(nextUrl);
+        setNextUrl(next);
+        setPrevUrl(previous);
+        setCardList((prev) => {
+            const newData = results.filter(
+                (newItem) => !prev.some((item) => item.id === newItem.id)
+            );
+            return [...prev, ...newData];
+        });
+        if (swiperRef.current) {
+            setTimeout(() => {
+                swiperRef.current.update();
+                swiperRef.current.slideNext();
+            }, 100);
+        }
+    }
+}
+
   // 이전 슬라이드
   const handlePrevButtonClick = async () => {
     const { next, previous } = await getCustomRecipient(prevUrl);
@@ -72,7 +66,7 @@ function CardList({ order = "", isMobile, isPhone, onClick}) {
   };
 
   const handleReachEnd = () => {
-    loadMoreCards();
+    handleNextButtonClick();
   };
 
   const swiperSettings = {
