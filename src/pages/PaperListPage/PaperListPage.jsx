@@ -2,32 +2,12 @@ import CardList from "./components/cardList/CardList";
 import styles from "./PaperListPage.module.scss";
 import PrimaryButton from "../../components/UI/PrimaryButton";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import useBreakPoint from '../../hooks/useBreakPoint';
+
+
 function PaperListPage() {
   const navigate = useNavigate();
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const isMobile = windowSize.width < 1920;
-  const isPhone = windowSize.width> 360 && windowSize.width < 768;
-
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+  const {isMobile, isPhone} = useBreakPoint();
 
   const handleNavigationToPostPage = (cardId) => {
     navigate(`/post/${cardId}`);
