@@ -39,22 +39,22 @@ function CardList({ order = "", isMobile, isPhone, onClick}) {
 
   const handleNextButtonClick = async () => {
     if (nextUrl) {
-        const { next, previous, results } = await getCustomRecipient(nextUrl);
-        setNextUrl(next);
-        setPrevUrl(previous);
-        setCardList((prev) => {
-            const newData = results.filter(
-                (newItem) => !prev.some((item) => item.id === newItem.id)
-            );
-            return [...prev, ...newData];
-        });
-        if (swiperRef.current) {
-            setTimeout(() => {
-                swiperRef.current.update();
-                swiperRef.current.slideNext();
-            }, 100);
-        }
-    }
+      const { next, previous, results: fetchedCards } = await getCustomRecipient(nextUrl);
+      setNextUrl(next);
+      setPrevUrl(previous);
+      setCardList((currentCardList) => {
+          const newCards = fetchedCards.filter(
+              (newCard) => !currentCardList.some((existingCard) => existingCard.id === newCard.id)
+          );
+          return [...currentCardList, ...newCards];
+      });
+      if (!isMobile) {
+          setTimeout(() => {
+              swiperRef.current.update();
+              swiperRef.current.slideNext();
+          }, 100);
+      }
+  }
 }
 
   // 이전 슬라이드
