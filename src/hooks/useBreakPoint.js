@@ -25,9 +25,9 @@ const useWindowSize = () => {
 const useBreakPoint = () => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width < 1920;
-  const isPhone = windowSize.width> 360 && windowSize.width < 768;
-  const isTablet = windowSize.width >= 768 && window.width < 1920;
+  const isPhone = windowSize.width >= 360 && windowSize.width < 768;
+  const isTablet = windowSize.width >= 768 && windowSize.width < 1920;
 
-  return {isMobile, isTablet,isPhone} 
+  return {isMobile, isTablet, isPhone} 
 }
 export default useBreakPoint;
