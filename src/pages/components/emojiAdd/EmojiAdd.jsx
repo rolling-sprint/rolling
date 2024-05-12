@@ -4,49 +4,17 @@ import addImg from "../../../assets/images/add.svg";
 import EmojiPicker from "emoji-picker-react";
 import { useEffect, useState } from "react";
 
-const EmojiAdd = ({ recipientId }) => {
-  const EMOJI_DATA = {
-    emoji: "",
-    type: "",
-  };
-
+const EmojiAdd = ({ handlePostEmojiData }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [emojiShow, setEmojiShow] = useState(false);
-  const [emojiData, setEmojiData] = useState(EMOJI_DATA);
 
   const onClickShow = () => {
     setEmojiShow(!emojiShow);
   };
 
   const onEmojiAddClick = (e) => {
-    if (emojiData.emoji === e.emoji && emojiData.type === "increase") {
-      setEmojiData({
-        ...emojiData,
-        type: "decrease",
-      });
-    } else if (emojiData.emoji === e.emoji && emojiData.type === "decrease") {
-      setEmojiData({
-        ...emojiData,
-        type: "increase",
-      });
-    } else {
-      setEmojiData({
-        emoji: e.emoji,
-        type: "increase",
-      });
-    }
+    handlePostEmojiData(e.emoji);
   };
-
-  useEffect(() => {
-    const handlePostData = async (formData, recipientId) => {
-      if (emojiData.emoji === "" || emojiData.type === "") {
-        return;
-      }
-      await postReaction(formData, recipientId);
-    };
-
-    handlePostData(emojiData, recipientId);
-  }, [emojiData, recipientId]);
 
   useEffect(() => {
     const handleWidth = () => {
