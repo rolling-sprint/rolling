@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import MyPaperCardList from "./components/MyPaperCardList";
+import styles from "./MyPaperPage.module.scss";
+import trashIconUrl from "../../assets/icons/icon-trash.svg";
 import MyPageHeader from "./myPageHeader/MyPageHeader";
 import styles from "./MyPaperPage.module.scss";
 import trashIconUrl from "../../assets/icons/icon-trash.svg";
