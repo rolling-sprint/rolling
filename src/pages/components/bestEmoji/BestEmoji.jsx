@@ -1,8 +1,10 @@
 import styles from "./BestEmoji.module.scss";
 import Text from "../../../components/UI/text/Text";
+import { useLocation } from "react-router-dom";
 
 const BestEmoji = ({ topReactions = [] }) => {
-  console.log(topReactions);
+  const location = useLocation();
+  const isListPage = location.pathname.startsWith("/list");
   return (
     <>
       {topReactions.length !== 0 ? (
@@ -11,7 +13,7 @@ const BestEmoji = ({ topReactions = [] }) => {
             return (
               <div key={emoji.id} className={styles.badge_emoji}>
                 <div>{emoji.emoji}</div>
-                <Text font="regular16" className={styles.emoji_count}>
+                <Text font="regular16" style={{ color: "#ffffff" }}>
                   {emoji.count}
                 </Text>
               </div>
@@ -19,7 +21,11 @@ const BestEmoji = ({ topReactions = [] }) => {
           })}
         </div>
       ) : (
-        <div>이모지를 추가해주세요</div>
+        <div
+          className={isListPage ? styles.hidden_message : styles.add_message}
+        >
+          이모지를 추가해주세요!!
+        </div>
       )}
     </>
   );
