@@ -3,8 +3,7 @@ import MyPaperCardList from "./components/MyPaperCardList";
 import styles from "./MyPaperPage.module.scss";
 import trashIconUrl from "../../assets/icons/icon-trash.svg";
 import MyPageHeader from "./myPageHeader/MyPageHeader";
-import styles from "./MyPaperPage.module.scss";
-import trashIconUrl from "../../assets/icons/icon-trash.svg";
+
 
 function MyPaperPage() {
   const { id } = useParams();
@@ -13,6 +12,7 @@ function MyPaperPage() {
     <>
       <MyPageHeader />
       <div className="page-wrapper">
+
         <button
           className={styles.goEditButton}
           onClick={() => navigate(`/post/${id}/edit`)}
@@ -24,7 +24,6 @@ function MyPaperPage() {
           />
           편집하기
         </button>
-
         <MyPaperCardList id={id} />
       </div>
     </>
