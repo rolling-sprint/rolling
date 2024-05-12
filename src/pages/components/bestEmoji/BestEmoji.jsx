@@ -1,4 +1,5 @@
 import styles from "./BestEmoji.module.scss";
+import Text from "../../../components/UI/text/Text";
 
 const BestEmoji = ({ topReactions = [] }) => {
   console.log(topReactions);
@@ -10,7 +11,9 @@ const BestEmoji = ({ topReactions = [] }) => {
             return (
               <div key={emoji.id} className={styles.badge_emoji}>
                 <div>{emoji.emoji}</div>
-                <div className={styles.emoji_count}>{emoji.count}</div>
+                <Text font="regular16" className={styles.emoji_count}>
+                  {emoji.count}
+                </Text>
               </div>
             );
           })}
