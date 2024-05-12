@@ -1,3 +1,11 @@
+.container {
+  button {
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
 .controlButtons {
   position: fixed;
   bottom: 10%;
