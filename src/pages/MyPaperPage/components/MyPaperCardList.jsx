@@ -48,8 +48,6 @@ function MyPaperCardList({ id }) {
         return "#b1e4ff";
       case "green":
         return "#d0f5c3";
-      default:
-        return "#ffe2ad";
     }
   };
 
