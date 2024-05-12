@@ -17,7 +17,7 @@ const INITIAL_RECIPIENT_VALUE = {
   backgroundColor: "",
   backgroundImageURL: null,
 };
-function MyPaperCardList({ id }) {
+function MyPaperCardList({ id, isAddMessagePossible = true, deleteMessage }) {
   const [userMessage, setUserMessage] = useState(INITIAL_VALUE);
   const [recipient, setRecipient] = useState(INITIAL_RECIPIENT_VALUE);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -74,7 +74,9 @@ function MyPaperCardList({ id }) {
       style={recipient.backgroundImageURL ? imageStyle : ColorStyle}
     >
       <div className={styles.cardList}>
-        <AddMessageCard className={styles.addCard} id={id} />
+        {isAddMessagePossible && (
+          <AddMessageCard className={styles.addCard} id={id} />
+        )}
         {sortedItems &&
           sortedItems.map((result) => (
             <MyPaperCard
@@ -82,10 +84,13 @@ function MyPaperCardList({ id }) {
               onClick={() => onClickButton(result)}
               key={result.id}
               message={result}
+              isAddMessagePossible={isAddMessagePossible}
+              deleteMessage={deleteMessage}
             />
           ))}
-        {isModalOpen && (
+        {isAddMessagePossible && isModalOpen && (
           <Modal
+            style={{ cursor: isAddMessagePossible ? "pointer" : "default" }}
             open={isModalOpen}
             onClose={() => {
               setIsModalOpen(false);
