@@ -4,6 +4,7 @@ import { deletePaper, deleteMessage } from "../../services/api";
 import MyPaperCardList from "../MyPaperPage/components/MyPaperCardList";
 import styles from "./PaperEditPage.module.scss";
 import PrimaryButton from "../../components/UI/PrimaryButton";
+import MyPageHeader from "../MyPaperPage/myPageHeader/MyPageHeader";
 
 function PaperEditPage() {
   const [sendersToDelete, setSendersToDelete] = useState(new Set()); // 삭제할 메시지 id값들을 담은 집합
@@ -39,35 +40,38 @@ function PaperEditPage() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.controlButtons}>
-        <button
-          className={styles.deletePaperButton}
-          onClick={handleDeletePaper}
-        >
-          삭제하기
-        </button>
-        <PrimaryButton
-          WidthMax={true}
-          disable={!isDeleteActive}
-          onClick={() => handleDeleteMessage(sendersToDelete)}
-        >
-          저장
-        </PrimaryButton>
-        <button
-          className={styles.backPageButton}
-          onClick={() => navigate(`/post/${id}`)}
-        >
-          돌아가기
-        </button>
-      </div>
+    <>
+      <MyPageHeader />
+      <div className={styles.container}>
+        <div className={styles.controlButtons}>
+          <button
+            className={styles.deletePaperButton}
+            onClick={handleDeletePaper}
+          >
+            삭제하기
+          </button>
+          <PrimaryButton
+            WidthMax={true}
+            disable={!isDeleteActive}
+            onClick={() => handleDeleteMessage(sendersToDelete)}
+          >
+            저장
+          </PrimaryButton>
+          <button
+            className={styles.backPageButton}
+            onClick={() => navigate(`/post/${id}`)}
+          >
+            돌아가기
+          </button>
+        </div>
 
-      <MyPaperCardList
-        id={id}
-        isAddMessagePossible={false}
-        deleteMessage={handleSetDeleteMessage}
-      />
-    </div>
+        <MyPaperCardList
+          id={id}
+          isAddMessagePossible={false}
+          deleteMessage={handleSetDeleteMessage}
+        />
+      </div>
+    </>
   );
 }
 export default PaperEditPage;
