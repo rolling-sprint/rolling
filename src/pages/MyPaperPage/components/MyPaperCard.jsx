@@ -1,3 +1,5 @@
+import { useState } from "react";
+import trashIconUrl from "../../../assets/icons/icon-trash.svg";
 import styles from "./MyPaperCard.module.scss";
 
 export function formatDate(value) {
@@ -7,7 +9,7 @@ export function formatDate(value) {
   }.${date.getDate() + 1 > 9 ? date.getDate() : "0" + date.getDate()}`;
 }
 
-function setRelationship(relationship) {
+export function setRelationship(relationship) {
   switch (relationship) {
     case "친구":
       return styles.blue;
@@ -20,7 +22,7 @@ function setRelationship(relationship) {
   }
 }
 
-function setFont(font) {
+export function setFont(font) {
   switch (font) {
     case "Pretendard":
       return "Pretendard";
@@ -33,9 +35,29 @@ function setFont(font) {
   }
 }
 
-export function MyPaperCard({ message, onClick }) {
+export function MyPaperCard({
+  message,
+  onClick,
+  isAddMessagePossible,
+  deleteMessage,
+}) {
+  const [isMessageVisible, setIsMessageVisible] = useState(true);
+
+  const handleMessageDelete = (e) => {
+    e.stopPropagation();
+    deleteMessage(message.id);
+    setIsMessageVisible(false); // 휴지통 버튼 누르면 카드 숨김
+  };
+
   return (
-    <div className={styles.messageCard} onClick={onClick}>
+    <div
+      className={styles.messageCard}
+      style={{
+        display: isMessageVisible ? "block" : "none",
+        cursor: isAddMessagePossible ? "pointer" : "default",
+      }}
+      onClick={onClick}
+    >
       <div className={styles.senderHeader}>
         <img src={message.profileImageURL} alt="프로필 이미지" />
         <p className={styles.sender}>From.</p>
@@ -47,6 +69,18 @@ export function MyPaperCard({ message, onClick }) {
         >
           {message.relationship}
         </p>
+        {!isAddMessagePossible && (
+          <button
+            className={styles.trashIconButton}
+            onClick={handleMessageDelete}
+          >
+            <img
+              className={styles.trashIcon}
+              src={trashIconUrl}
+              alt="휴지통 버튼"
+            />
+          </button>
+        )}
       </div>
       <hr className={styles.hr} />
       <p

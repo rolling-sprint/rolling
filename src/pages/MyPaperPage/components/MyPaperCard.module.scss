@@ -115,8 +115,37 @@
   font-size: 12px;
   font-weight: 400;
   font-weight: 400;
+}
+
+.trashIconButton {
+  position: absolute;
+  top: 28px;
+  left: 320px;
+  background-color: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  .trashIcon {
+    position: static;
+    width: 24px;
+    height: 24px;
+  }
+
   &:hover {
-    cursor: default;
+    border: 1px solid var(--purple-600);
+    background-color: var(--purple-600);
+
+    img {
+      filter: brightness(300%);
+    }
   }
 }
 
@@ -128,6 +157,9 @@
   }
   .content {
     padding-right: 24px;
+  }
+  .trashIconButton {
+    left: 290px;
   }
 }
 /*mobile*/
