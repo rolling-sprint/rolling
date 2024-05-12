@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import arrowImgUrl from "../../../assets/images/arrow_down.svg";
 import styles from "./EmojiListDropDown.module.scss";
 import { getReactions } from "../../../services/api";
@@ -8,12 +8,14 @@ const EmojiListDropDown = ({ recipientId }) => {
   const [emojiData, setEmojiData] = useState([]);
   const [dataSlice, setDataSlice] = useState(11);
   const [showEmojiList, setShowEmojiList] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const onClickEvent = () => {
-    // 화면크기에 맞춰서 데이터 자르기
+  const handleListShow = async () => {
+    // 화면크기에 맞춰서 데이터 자르고 버튼 클릭할 떄마다 API로 데이터를 받아옴
     const dataCount = window.innerWidth <= 768 ? 9 : 11;
     setDataSlice(dataCount);
     setShowEmojiList(!showEmojiList);
+    await handleLoad(recipientId);
   };
 
   const handleLoad = async (recipientId) => {
@@ -25,11 +27,26 @@ const EmojiListDropDown = ({ recipientId }) => {
     handleLoad(recipientId);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowEmojiList(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       <img
+        ref={dropdownRef}
         className={styles.arrow_img}
-        onClick={onClickEvent}
+        onClick={handleListShow}
         src={arrowImgUrl}
         alt="이모지리스트드롭다운"
       />

@@ -8,12 +8,13 @@ const EmojiAdd = ({ handlePostEmojiData }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [emojiShow, setEmojiShow] = useState(false);
 
-  const onClickShow = () => {
+  const handleEmojiShow = () => {
     setEmojiShow(!emojiShow);
   };
 
   const onEmojiAddClick = (e) => {
     handlePostEmojiData(e.emoji);
+    setEmojiShow(!emojiShow);
   };
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const EmojiAdd = ({ handlePostEmojiData }) => {
 
   return (
     <div className={styles.emoji_container}>
-      <button className={styles.btn_border} onClick={onClickShow}>
+      <button className={styles.btn_border} onClick={handleEmojiShow}>
         {windowWidth <= 360 ? (
           <img src={addImg} alt="이모지추가하기" />
         ) : (
