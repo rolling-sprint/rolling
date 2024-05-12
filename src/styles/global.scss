@@ -99,6 +99,22 @@ a {
   gap: 0;
 }
 
+/* Fonts */
+@font-face {
+  font-family: "NanumMyeongjo";
+  src: url(../assets/fonts/NanumMyeongjo.ttf);
+}
+
+@font-face {
+  font-family: "NanumPen";
+  src: url(../assets/fonts/NanumPen.ttf);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-nanumfont);
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   .page-wrapper {
