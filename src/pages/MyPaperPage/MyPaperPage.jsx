@@ -1,10 +1,25 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import MyPaperCardList from "./components/MyPaperCardList";
+import styles from "./MyPaperPage.module.scss";
+import trashIconUrl from "../../assets/icons/icon-trash.svg";
 
 function MyPaperPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   return (
     <div className="page-wrapper">
+      <button
+        className={styles.goEditButton}
+        onClick={() => navigate(`/post/${id}/edit`)}
+      >
+        <img
+          className={styles.trashIcon}
+          src={trashIconUrl}
+          alt="휴지통 아이콘"
+        />
+        편집하기
+      </button>
+
       <MyPaperCardList id={id} />
     </div>
   );
