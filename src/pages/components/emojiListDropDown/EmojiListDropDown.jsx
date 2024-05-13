@@ -2,13 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import arrowImgUrl from "../../../assets/images/arrow_down.svg";
 import styles from "./EmojiListDropDown.module.scss";
 import { getReactions } from "../../../services/api";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 // MyPaperPage에서 postId(===recipientId)를 받아와서 사용
 const EmojiListDropDown = ({ recipientId }) => {
   const [emojiData, setEmojiData] = useState([]);
   const [dataSlice, setDataSlice] = useState(11);
   const [showEmojiList, setShowEmojiList] = useState(false);
-  const dropdownRef = useRef(null);
+  const listDropDownRef = useRef(null);
+  useOutsideClick(listDropDownRef, setShowEmojiList);
 
   const handleListShow = async () => {
     // 화면크기에 맞춰서 데이터 자르고 버튼 클릭할 떄마다 API로 데이터를 받아옴
@@ -27,24 +29,10 @@ const EmojiListDropDown = ({ recipientId }) => {
     handleLoad(recipientId);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowEmojiList(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
     <div>
       <img
-        ref={dropdownRef}
+        ref={listDropDownRef}
         className={styles.arrow_img}
         onClick={handleListShow}
         src={arrowImgUrl}
