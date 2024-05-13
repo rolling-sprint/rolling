@@ -39,6 +39,20 @@ $dark-text: #ffffff;
     }
   }
 
+  /* 롤링페이퍼 헤더 */
+  .dark-rolling-header {
+    background-color: $dark-background;
+    border-bottom: 1px solid var(--grey-800);
+
+    .dark-emoji-dropdown {
+      filter: invert(100%);
+    }
+
+    .dark-text {
+      color: var(--white);
+    }
+  }
+
   /* 롤링페이퍼 생성 폼 */
   .dark-paper-post {
     background-color: $dark-background;

@@ -41,7 +41,7 @@ const MyPageHeader = () => {
   }, []);
 
   return (
-    <div className={styles.header_container}>
+    <div className={`${styles.header_container} dark-rolling-header`}>
       {headerWidth <= 600 ? (
         <div className={styles.mobile_header}>
           <div className={styles.header}>
