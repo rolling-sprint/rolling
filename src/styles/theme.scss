@@ -4,7 +4,7 @@
 }
 $light-background: #ffffff;
 $light-text: #000000;
-$dark-background: var(--grey-900);
+$dark-background: var(--grey-800);
 $dark-text: #ffffff;
 
 * {
@@ -13,9 +13,6 @@ $dark-text: #ffffff;
 
 /* Light Style */
 .light-mode {
-  .paper-post-page {
-    height: 100vh;
-  }
 }
 
 /* Dark Style */
@@ -26,7 +23,7 @@ $dark-text: #ffffff;
   /* 글로벌 헤더 */
   .global-header {
     background-color: $dark-background;
-    border-bottom: 1px solid var(--grey-800);
+    border-bottom: 1px solid var(--grey-700);
 
     .logo-text {
       filter: brightness(500%);
