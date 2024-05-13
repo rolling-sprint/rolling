@@ -41,4 +41,17 @@ $dark-text: #ffffff;
       color: var(--white);
     }
   }
+
+  /* 롤링페이퍼 생성 폼 */
+  .dark-paper-post {
+    background-color: $dark-background;
+    label,
+    h2 {
+      color: var(--grey-200);
+    }
+
+    p {
+      color: var(--grey-400);
+    }
+  }
 }
