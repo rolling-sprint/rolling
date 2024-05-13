@@ -94,7 +94,6 @@ function CardList({ order = "", isMobile, isPhone, onClick }) {
       },
     },
   };
-  console.log(cardList);
   return (
     <>
       {cardList.length !== 0 ? (
