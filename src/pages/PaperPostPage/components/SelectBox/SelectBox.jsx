@@ -4,56 +4,41 @@ import ToggleButton from "../ToggleButton/ToggleButton";
 import Checkbox from "../CheckBox/CheckBox";
 import styles from "./SelectBox.module.scss";
 
+const COLOR = ["beige", "purple", "blue", "green"];
+
 const SELECT = [
   { label: "컬러", value: "color" },
   { label: "이미지", value: "image" },
 ];
 
-const SELECT_COLOR_DEFAULT = {
-  ckb1: true,
-  ckb2: false,
-  ckb3: false,
-  ckb4: false,
+const checkDefalut = {
+  checkBox1: false,
+  checkBox2: false,
+  checkBox3: false,
+  checkBox4: false,
 };
 
 function SelectBox({ onSelectionChange, onSelectTypeChange }) {
   const [backgroundType, setBackgroundType] = useState("color");
-  const [isChecked, setIsChecked] = useState(SELECT_COLOR_DEFAULT);
   const [imageUrls, setImageUrls] = useState([]);
+  const [isChecked, setIsChecked] = useState({
+    ...checkDefalut,
+    checkBox1: true,
+  });
 
   const handleCheckboxChange = (checkboxId) => {
-    const newIsChecked = {
-      ckb1: false,
-      ckb2: false,
-      ckb3: false,
-      ckb4: false,
-    };
+    const check = { ...checkDefalut };
 
-    newIsChecked[checkboxId] = true;
-    setIsChecked(newIsChecked);
+    check[`checkBox${checkboxId + 1}`] = true;
+    setIsChecked(check);
 
-    const newBackgroundColor = getColorFromCheckbox(checkboxId) || "";
-    const newImageURL = imageUrls[parseInt(checkboxId.slice(3)) - 1] || "";
+    const newBackgroundColor = COLOR[checkboxId] || "";
+    const newImageURL = imageUrls[checkboxId] || "";
 
     onSelectionChange({
       backgroundColor: newBackgroundColor,
       imageURL: newImageURL,
     });
-  };
-
-  const getColorFromCheckbox = (checkboxId) => {
-    switch (checkboxId) {
-      case "ckb1":
-        return "beige";
-      case "ckb2":
-        return "purple";
-      case "ckb3":
-        return "blue";
-      case "ckb4":
-        return "green";
-      default:
-        return "beige";
-    }
   };
 
   const fetchImgUrls = async () => {
@@ -81,12 +66,13 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
       <div className={styles.selectorBox}>
         {imageUrls.map((imageUrl, index) => (
           <Checkbox
-            id={`ckb${index + 1}`}
+            key={`checkBox${index + 1}`}
+            id={`checkBox${index + 1}`}
             type={backgroundType}
-            color={getColorFromCheckbox(`ckb${index + 1}`)}
+            color={COLOR[index]}
             image={imageUrl}
-            isChecked={isChecked[`ckb${index + 1}`]}
-            onCheckboxChange={() => handleCheckboxChange(`ckb${index + 1}`)}
+            isChecked={isChecked[`checkBox${index + 1}`]}
+            onCheckboxChange={() => handleCheckboxChange(index)}
           />
         ))}
       </div>
