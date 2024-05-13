@@ -32,6 +32,8 @@ export function setFont(font) {
       return "NanumMyeongjo";
     case "나눔손글씨 손편지체":
       return "NanumPen";
+    default:
+      return "Pretendard";
   }
 }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./DropDownBox.module.scss";
 import arrowIconUrl from "../../../../assets/icons/icon-arrow-bottom.svg";
+import { setFont } from "../../../MyPaperPage/components/MyPaperCard";
 
 function DropDownBox({ name, onChange, options }) {
   const [isDrop, setIsDrop] = useState(false);
@@ -22,14 +23,18 @@ function DropDownBox({ name, onChange, options }) {
   return (
     <div className={styles.container}>
       <button className={styles.dropDownButton} onClick={toggleDropdown}>
-        <div>{selected}</div>
+        <div style={{ fontFamily: selected.fontFamily }}>{selected}</div>
         <img alt="옵션 선택" src={arrowIconUrl} className={styles.arrowIcon} />
       </button>
 
       {isDrop && (
         <div className={styles.options}>
           {options.map((option, index) => (
-            <label key={index} className={styles.option}>
+            <label
+              key={index}
+              className={styles.option}
+              style={{ fontFamily: setFont(option) }}
+            >
               <input
                 name={name}
                 type="radio"
