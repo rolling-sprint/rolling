@@ -25,14 +25,23 @@ function ProfileImage({ name, onChange }) {
     onChange(name, src);
   };
 
+  const handleResetUrl = () => {
+    setSelected(imageUrls[0]);
+  };
+
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.selectedAvatarWrapper}>
         <img
           alt="선택한 프로필"
           src={selected}
           className={styles.selectedAvatar}
         />
+        {selected !== imageUrls[0] && ( // 선택된 프로필이 기본 아바타가 아닐 때, 삭제 버튼 보이게 함
+          <button className={styles.deleteButton} onClick={handleResetUrl}>
+            x
+          </button>
+        )}
       </div>
       <div className={styles.avatarsSection}>
         <p>프로필 이미지를 선택해주세요!</p>
