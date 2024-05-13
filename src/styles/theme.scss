@@ -1,0 +1,44 @@
+// 테마 변수 정의
+@mixin transition($duration: 0.3s, $timing-function: ease) {
+  transition: all $duration $timing-function;
+}
+$light-background: #ffffff;
+$light-text: #000000;
+$dark-background: var(--grey-900);
+$dark-text: #ffffff;
+
+* {
+  @include transition();
+}
+
+/* Light Style */
+.light-mode {
+  .paper-post-page {
+    height: 100vh;
+  }
+}
+
+/* Dark Style */
+.dark-mode {
+  background-color: $dark-background;
+  color: $dark-text;
+
+  /* 글로벌 헤더 */
+  .global-header {
+    background-color: $dark-background;
+    border-bottom: 1px solid var(--grey-800);
+
+    .logo-text {
+      filter: brightness(500%);
+    }
+
+    .create-button {
+      border: 1px solid var(--purple-600);
+      background-color: var(--purple-600);
+    }
+
+    .create-button-text {
+      color: var(--white);
+    }
+  }
+}
