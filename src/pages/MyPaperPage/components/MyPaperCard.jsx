@@ -9,7 +9,7 @@ export function formatDate(value) {
   }.${date.getDate() + 1 > 9 ? date.getDate() : "0" + date.getDate()}`;
 }
 
-export function setRelationship(relationship) {
+function setRelationship(relationship) {
   switch (relationship) {
     case "친구":
       return styles.blue;
@@ -32,8 +32,6 @@ export function setFont(font) {
       return "NanumMyeongjo";
     case "나눔손글씨 손편지체":
       return "NanumPen";
-    default:
-      return "Pretendard";
   }
 }
 
