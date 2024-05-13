@@ -5,6 +5,7 @@ import MyPaperCardList from "../MyPaperPage/components/MyPaperCardList";
 import styles from "./PaperEditPage.module.scss";
 import PrimaryButton from "../../components/UI/PrimaryButton";
 import MyPageHeader from "../MyPaperPage/myPageHeader/MyPageHeader";
+import FadeInOut from "../../components/animation/FadeInOut";
 
 function PaperEditPage() {
   const [sendersToDelete, setSendersToDelete] = useState(new Set()); // 삭제할 메시지 id값들을 담은 집합
@@ -40,7 +41,7 @@ function PaperEditPage() {
   };
 
   return (
-    <>
+    <FadeInOut>
       <MyPageHeader />
       <div className={styles.container}>
         <div className={styles.controlButtons}>
@@ -71,7 +72,7 @@ function PaperEditPage() {
           deleteMessage={handleSetDeleteMessage}
         />
       </div>
-    </>
+    </FadeInOut>
   );
 }
 export default PaperEditPage;

@@ -3,16 +3,15 @@ import MyPaperCardList from "./components/MyPaperCardList";
 import styles from "./MyPaperPage.module.scss";
 import trashIconUrl from "../../assets/icons/icon-trash.svg";
 import MyPageHeader from "./myPageHeader/MyPageHeader";
-
+import FadeInOut from "../../components/animation/FadeInOut";
 
 function MyPaperPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   return (
-    <>
+    <FadeInOut>
       <MyPageHeader />
       <div className="page-wrapper">
-
         <button
           className={styles.goEditButton}
           onClick={() => navigate(`/post/${id}/edit`)}
@@ -26,7 +25,7 @@ function MyPaperPage() {
         </button>
         <MyPaperCardList id={id} />
       </div>
-    </>
+    </FadeInOut>
   );
 }
 
