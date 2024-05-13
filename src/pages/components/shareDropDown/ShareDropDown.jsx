@@ -1,9 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./ShareDropDown.module.scss";
 import shareImg from "../../../assets/images/share.svg";
 import completedImg from "../../../assets/images/completed.svg";
 import closeImg from "../../../assets/images/close.svg";
-import useOutsideClick from "../../../hooks/useOutsideClick";
 
 // 카톡 공유하기 양식
 const kakaoButton = () => {
@@ -50,8 +49,6 @@ const kakaoButton = () => {
 const ShareDropDown = () => {
   const [shareShow, setShareShow] = useState(false);
   const [toast, setToast] = useState(false);
-  const shareDropDownRef = useRef(null);
-  useOutsideClick(shareDropDownRef, setShareShow);
 
   const onClickShow = () => {
     setShareShow(!shareShow);
@@ -73,11 +70,7 @@ const ShareDropDown = () => {
   return (
     <>
       <div className={styles.share_container}>
-        <button
-          className={styles.share_btn}
-          onClick={onClickShow}
-          ref={shareDropDownRef}
-        >
+        <button className={styles.share_btn} onClick={onClickShow}>
           <img src={shareImg} alt="공유이미지" />
         </button>
         <div className={styles.outside_container}>

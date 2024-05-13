@@ -1,15 +1,12 @@
 import styles from "./EmojiAdd.module.scss";
 import addImg from "../../../assets/images/add.svg";
 import EmojiPicker from "emoji-picker-react";
-import { useEffect, useRef, useState } from "react";
-import useOutsideClick from "../../../hooks/useOutsideClick";
+import { useEffect, useState } from "react";
 
 const EmojiAdd = ({ handlePostEmojiData }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [emojiShow, setEmojiShow] = useState(false);
   const style = windowWidth <= 500 ? 250 : 350;
-  const addDropDownRef = useRef(null);
-  useOutsideClick(addDropDownRef, setEmojiShow);
 
   const handleEmojiShow = () => {
     setEmojiShow(!emojiShow);
@@ -33,11 +30,7 @@ const EmojiAdd = ({ handlePostEmojiData }) => {
 
   return (
     <div className={styles.emoji_container}>
-      <button
-        className={styles.btn_border}
-        onClick={handleEmojiShow}
-        ref={addDropDownRef}
-      >
+      <button className={styles.btn_border} onClick={handleEmojiShow}>
         {windowWidth <= 360 ? (
           <img src={addImg} alt="이모지추가하기" />
         ) : (
