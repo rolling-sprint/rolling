@@ -51,4 +51,15 @@ $dark-text: #ffffff;
       color: var(--grey-400);
     }
   }
+
+  /* 메시지 생성 폼 */
+  .dark-message-form {
+    h2 {
+      color: var(--grey-200);
+    }
+
+    p {
+      color: var(--grey-400);
+    }
+  }
 }
