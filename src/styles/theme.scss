@@ -42,7 +42,7 @@ $dark-text: #ffffff;
   /* 롤링페이퍼 헤더 */
   .dark-rolling-header {
     background-color: $dark-background;
-    border-bottom: 1px solid var(--grey-800);
+    border-bottom: 1px solid var(--grey-600);
 
     .dark-emoji-dropdown {
       filter: invert(100%);
