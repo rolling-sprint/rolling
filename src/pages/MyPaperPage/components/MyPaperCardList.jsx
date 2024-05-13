@@ -72,12 +72,12 @@ function MyPaperCardList({ id, isAddMessagePossible = true, deleteMessage }) {
           <AddMessageCard className={styles.addCard} id={id} />
         )}
         {sortedMessages &&
-          sortedMessages.map((card) => (
+          sortedMessages.map((message) => (
             <MyPaperCard
-              className={styles.card}
-              onClick={() => handleClickCard(card)}
-              key={card.id}
-              message={card}
+              className={styles.message}
+              onClick={() => handleClickCard(message)}
+              key={message.id}
+              message={message}
               isAddMessagePossible={isAddMessagePossible}
               deleteMessage={deleteMessage}
             />
