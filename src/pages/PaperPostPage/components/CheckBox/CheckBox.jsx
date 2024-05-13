@@ -18,14 +18,15 @@ const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {
   const backgroundStyle =
     type === "color"
       ? { background: `${colorNumber(color)}` }
-      : { backgroundImage: `url(${image})` };
+      : { backgroundImage: `url(${image})`, border: "none" };
+  const checkboxStyle = isChecked ? { opacity: 0.6 } : {}; // 선택된 박스에 opacity 적용
 
   return (
     <>
       <label
         htmlFor={id}
         className={`${styles.selectLabel} ${isChecked ? "checked" : ""}`}
-        style={backgroundStyle}
+        style={{ ...backgroundStyle, ...checkboxStyle }}
       >
         {isChecked && (
           <img className={styles.check} src={CheckImage} alt="checked" />
