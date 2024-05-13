@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import MyPaperCardList from "./components/MyPaperCardList";
 import styles from "./MyPaperPage.module.scss";
-import trashIconUrl from "../../assets/icons/icon-trash.svg";
+import editIconUrl from "../../assets/icons/icon-edit.svg";
 import MyPageHeader from "./myPageHeader/MyPageHeader";
 import FadeInOut from "../../components/animation/FadeInOut";
 
@@ -13,15 +13,14 @@ function MyPaperPage() {
       <MyPageHeader />
       <div className="page-wrapper">
         <button
-          className={styles.goEditButton}
+          className={styles.editButton}
           onClick={() => navigate(`/post/${id}/edit`)}
         >
           <img
-            className={styles.trashIcon}
-            src={trashIconUrl}
+            className={styles.editIcon}
+            src={editIconUrl}
             alt="휴지통 아이콘"
           />
-          편집하기
         </button>
         <MyPaperCardList id={id} />
       </div>
