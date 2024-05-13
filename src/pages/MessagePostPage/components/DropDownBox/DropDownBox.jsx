@@ -23,7 +23,7 @@ function DropDownBox({ name, onChange, options }) {
   return (
     <div className={styles.container}>
       <button className={styles.dropDownButton} onClick={toggleDropdown}>
-        <div style={{ fontFamily: selected.fontFamily }}>{selected}</div>
+        <div style={{ fontFamily: setFont(selected) }}>{selected}</div>
         <img alt="옵션 선택" src={arrowIconUrl} className={styles.arrowIcon} />
       </button>
 
