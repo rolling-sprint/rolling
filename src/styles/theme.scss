@@ -62,4 +62,11 @@ $dark-text: #ffffff;
       color: var(--grey-400);
     }
   }
+
+  /* 롤링페이퍼 목록페이지 */
+  .dark-list-page {
+    h1 {
+      color: var(--white);
+    }
+  }
 }
