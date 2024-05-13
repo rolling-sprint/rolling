@@ -24,11 +24,20 @@ function DropDownBox({ name, onChange, options }) {
     onChange(name, value);
   };
 
+  const arrowIconStyle = {
+    transform: isDrop ? "rotate(180deg)" : "rotate(0deg)",
+  };
+
   return (
     <div className={styles.container} ref={dropDownRef}>
       <button className={styles.dropDownButton} onClick={toggleDropdown}>
         <div style={{ fontFamily: setFont(selected) }}>{selected}</div>
-        <img alt="옵션 선택" src={arrowIconUrl} className={styles.arrowIcon} />
+        <img
+          alt="옵션 선택"
+          src={arrowIconUrl}
+          className={styles.arrowIcon}
+          style={arrowIconStyle}
+        />
       </button>
 
       {isDrop && (
