@@ -12,25 +12,20 @@ const Checkbox = ({ id, type, color, image, isChecked, onCheckboxChange }) => {
         return "#b1e4ff";
       case "green":
         return "#d0f5c3";
-      default:
-        return "#ffe2ad";
     }
   };
 
-  const colorStyle = {
-    background: `${colorNumber(color)}`,
-  };
-
-  const imageStyle = {
-    backgroundImage: image ? `url(${image})` : "none",
-  };
+  const backgroundStyle =
+    type === "color"
+      ? { background: `${colorNumber(color)}` }
+      : { backgroundImage: `url(${image})` };
 
   return (
     <>
       <label
         htmlFor={id}
         className={`${styles.selectLabel} ${isChecked ? "checked" : ""}`}
-        style={type === "color" ? colorStyle : imageStyle}
+        style={backgroundStyle}
       >
         {isChecked && (
           <img className={styles.check} src={CheckImage} alt="checked" />

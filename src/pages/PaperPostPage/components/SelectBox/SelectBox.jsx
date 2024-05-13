@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getImages } from "../../../../services/api";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import Checkbox from "../CheckBox/CheckBox";
-import CheckImage from "../../../../assets/images/Enabled.svg";
 import styles from "./SelectBox.module.scss";
 
 const SELECT = [
@@ -31,13 +30,10 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
     };
 
     newIsChecked[checkboxId] = true;
-
     setIsChecked(newIsChecked);
 
-    const index = parseInt(checkboxId.slice(3)) - 1;
-
     const newBackgroundColor = getColorFromCheckbox(checkboxId) || "";
-    const newImageURL = imageUrls[index] || "";
+    const newImageURL = imageUrls[parseInt(checkboxId.slice(3)) - 1] || "";
 
     onSelectionChange({
       backgroundColor: newBackgroundColor,
@@ -85,14 +81,12 @@ function SelectBox({ onSelectionChange, onSelectTypeChange }) {
       <div className={styles.selectorBox}>
         {imageUrls.map((imageUrl, index) => (
           <Checkbox
-            key={`ckb${index + 1}`}
             id={`ckb${index + 1}`}
             type={backgroundType}
             color={getColorFromCheckbox(`ckb${index + 1}`)}
             image={imageUrl}
             isChecked={isChecked[`ckb${index + 1}`]}
             onCheckboxChange={() => handleCheckboxChange(`ckb${index + 1}`)}
-            checkIcon={<image src={CheckImage} className={styles.check} />}
           />
         ))}
       </div>
